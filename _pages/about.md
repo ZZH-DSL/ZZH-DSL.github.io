@@ -15,6 +15,8 @@ I graduated from **[Shanghai Normal University](https://www.shnu.edu.cn/main.htm
 
 As I haven't started conducting research yet, this homepage **won't contain any academic publications**. However, I will be posting some learning reflections and notes here. Feel free to read and reach out — all math students are welcome.
 
+---
+
 我是 **[上海科技大学](https://www.shanghaitech.edu.cn/)** **[数学科学研究所](https://ims.shanghaitech.edu.cn/)** 的一名研究生, 攻读**数学**专业.
 
 我本科毕业于 **[上海师范大学](https://www.shnu.edu.cn/main.htm)** **数学与应用数学 (数学金融人工智能实验班)** 专业, 在这四年的时间中, 我的兴趣逐渐从人工智能转向 **基础数学** , 特别是 **代数几何** . 我的本科毕业论文题目是《几何不变量理论及其在模空间中的应用》, 主要介绍了 GIT 理论与模空间理论的一些简单概念, 完成了一些引理的证明和例子的计算, 我后面会在 Blog 里挂出答辩的幻灯片与论文的一些内容.
@@ -25,13 +27,15 @@ As I haven't started conducting research yet, this homepage **won't contain any 
 
 My primary research interests lie in algebraic geometry, especially related topics on moduli spaces.
 
+---
+
 我主要的研究兴趣集中在代数几何, 特别是模空间相关的理论.
 
 ## My Philosophy 我的生活与研究哲学
 
 在代数几何上我信奉 Grothendieck 的一些理念, 主要是他关于 "The rising sea" 的比喻:
 
->[!quote] 选自Grothendieck - Récoltes et Semailles, 翻译参考 DeepSeek
+>选自Grothendieck - Récoltes et Semailles, 翻译参考 DeepSeek
 >我可以用同样的坚果意象来说明第二种方法:
 >第一种类比:我首先想到的是将坚果浸泡在某种软化液体中——为何不直接用水呢? 你偶尔摩擦坚果以促进液体渗透,其余时间则静待其变.经过数周甚至数月, 外壳逐渐变得柔软——当时机成熟,仅需用手轻轻一压,它便会如完美成熟的牛油果般自然裂开!
 >几周前, 我的脑海中闪现了另一幅图像.
