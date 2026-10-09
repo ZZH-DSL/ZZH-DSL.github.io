@@ -3,10 +3,11 @@ title: "Seminar of Algebraic Geometry 2026"
 collection: seminar
 type: "Workshop"
 permalink: /seminar/Seminar AG 2026
-venue: "Shanghaitech"
+venue: "ShanghaiTech"
 date: 2026-10-10
 location: "Shanghai"
 ---
+上海科技大学代数几何 2026 年秋季讨论班, 每周一次, 时间地点待定.
 
 ## Seminar Description
 
