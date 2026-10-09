@@ -4,7 +4,7 @@ collection: seminar
 type: "Workshop"
 permalink: /seminar/Seminar AG 2026
 venue: "Shanghaitech"
-date: 2026-10
+date: 2026-10-10
 location: "Shanghai"
 ---
 
