@@ -7,11 +7,13 @@ venue: "ShanghaiTech"
 date: 2026-10-10
 location: "Shanghai"
 ---
-上海科技大学代数几何 2026 年秋季讨论班, 每周一次, 时间地点待定.
+上海科技大学代数几何 2026 年秋季讨论班, 每周一 18:00-19:30 (暂定), 数学所 506, 从 10 月 12 日开始.
 
 ## Poster
 
 ![海报](/latex/Poster%20of%20Seminar%20AG2026.png)
+
+这个海报上右边的这个代数曲面被叫做" 十二面体星"（Dodekaederstern）, 除去 20 个奇点以外均光滑, 出自网页 [https://www.dodekaederstern.cc/](https://www.dodekaederstern.cc/).
 
 ## Seminar Description
 
@@ -27,11 +29,11 @@ Hartshorne 作为代数几何的“圣经”，又具有晦涩和习题繁杂的
 
 | 项目 | 内容 |
 |------|------|
-| 时间 | 待定 |
-| 地点 | 待定 |
+| 时间 | 周一 18:00 -- 19:30 (暂定) |
+| 地点 | 数学所 506 |
 | 教材 | R. Hartshorne, *Algebraic Geometry*, GTM 52, Springer. |
 | 范围 | Chapter II.1 -- Chapter II.7 |
-| 对象 | 本科生/研究生 |
+| 对象 | 本科生/研究生, 欢迎所有人参加 |
 | 预备知识 | 范畴论, 抽象代数, 交换代数 |
 
 ## Textbooks & References
@@ -45,9 +47,9 @@ and so on.
 
 ## Tentative Schedule
 
-| # | Topics | Hartshorne | Speaker |
+| Time | Topics | Hartshorne | Speaker |
 |---|--------|------------|---------|
-| 1 | Sheaves, stalks, local nature of sheaves, sheafification | II.1 | 章梓杭 |
+| 2026/10/12 | Sheaves, stalks, local nature of sheaves, sheafification | II.1 | 章梓杭 |
 | 2 | $\mathsf{Sh}$, base sheaves and glueing sheaves, locally ringed space | II.1 | 章梓杭 |
 | 3 | Affine schemes, morphisms to affine schemes, glueing schemes | II.2 | 章梓杭 |
 | 4 | $\operatorname{Proj} S$, functor from $\mathsf{Var}_{k}$ to $\mathsf{Sch}_{k}$, functor of points | II.2 |  |
@@ -69,12 +71,15 @@ and so on.
 
 你说的对，但是《代数几何》是由 Grothendieck 等人自主研发的一款全新开放世界冒险游戏。游戏发生在一个被称作「scheme」的幻想世界，在这里，被 Grothendieck 选中的人将被授予「quasi-coherent sheaf」，导引 cohomology 之力。你将扮演一位名为「抽象废话低吟者」的神秘角色，在层中邂逅茎各异、局部自由的模层们，和他们一起击败 Zariski、Serre、Weil、Cartier 和 Mumford，找回失散的上同调类——同时，逐步发掘“Grothendieck-Riemann-Roch 定理” 的真相.
 
-P.S. 这段是我参考 [作为纯数学讨论班的组织者，你对组织讨论班有什么建议？ - 樱花树下的数学喵的回答 - 知乎](https://www.zhihu.com/question/1985052586496254205/answer/1985109188670681731) 与 DeepSeek 共创的.
-
-
+> P.S. 这段是我参考 [作为纯数学讨论班的组织者，你对组织讨论班有什么建议？ - 樱花树下的数学喵的回答 - 知乎](https://www.zhihu.com/question/1985052586496254205/answer/1985109188670681731) 与 DeepSeek 共创的.
 
 ## Resources
 
 我会在这里不定时地放上一些代数几何的相关资源.
 
-- 袁新意, [学习代数几何的建议](http://faculty.bicmr.pku.edu.cn/~yxy/preprints/AGstudy(v2.2).pdf). 袁老师关于代数几何初学的相关资料和学习路线的汇总.
+- 袁新意, [学习代数几何的建议](http://faculty.bicmr.pku.edu.cn/~yxy/preprints/AGstudy(v2.2).pdf).
+  袁老师关于代数几何初学的相关资料和学习路线的汇总.
+- Herwig Hauser, [Gallery of Singular Algebraic Surfaces](https://homepage.univie.ac.at/herwig.hauser/gallery.html).
+  代数几何也可以可视化!
+- 到处逛, [代数几何简史](https://zhuanlan.zhihu.com/p/148865387).
+  这是一篇非常好的导引文章, 能够通过历史的足迹看遍代数几何的各个概念的由来, 也能将读者引导至更深的地方.
