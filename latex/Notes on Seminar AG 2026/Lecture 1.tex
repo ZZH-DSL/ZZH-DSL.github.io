@@ -1,0 +1,676 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{bookmark}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathrsfs}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{framed}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{tikz-cd}
+\usepackage{circuitikz}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage[center]{titlesec}
+% \usepackage{mypackage} % 你的常用符号包，按需启用
+\usepackage{fontawesome5}
+\usetikzlibrary{positioning}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usepackage[backend=biber,style=alphabetic,sorting=none]{biblatex}
+\addbibresource{reference.bib} % 按需启用
+
+\tcbuselibrary{theorems}
+\tcbuselibrary{breakable}
+
+% ---------- 颜色定义 ----------
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!10}
+\colorlet{LightGreen}{Green!10}
+\colorlet{Lightblue}{Blue!10}
+\colorlet{Lightpurple}{Purple!10}
+\colorlet{LightRed}{Red!10}
+\colorlet{LightYellow}{Yellow!10}
+\colorlet{LightCyan}{Cyan!10}
+\colorlet{LightAquamarine}{Aquamarine!10}
+\colorlet{LightCadetBlue}{CadetBlue!10}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+% ---------- 定理环境（英文） ----------
+\declaretheoremstyle[
+  name = Theorem,
+  postheadspace={\newline},
+]{thmsty}
+
+\declaretheorem[
+  style=thmsty,
+  numberwithin=section,
+  refname={Theorem},
+]{theorem}
+\tcolorboxenvironment{theorem}{
+  colback=LightGray,
+  breakable,
+  before upper app={\setlength{\parindent}{2em}}
+}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,sibling=theorem,refname={Definition}]{definition}
+\tcolorboxenvironment{definition}{colback=LightCyan,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Remark,]{thmsty}
+\declaretheorem[style=thmsty,sibling=theorem,refname={Remark}]{remark}
+\tcolorboxenvironment{remark}{colback=LightRed,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Lemma,]{thmsty}
+\declaretheorem[style=thmsty,sibling=theorem,refname={Lemma}]{lemma}
+\tcolorboxenvironment{lemma}{colback=Lightblue,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Corollary,]{thmsty}
+\declaretheorem[style=thmsty,sibling=theorem,refname={Corollary}]{corollary}
+\tcolorboxenvironment{corollary}{colback=Lightpurple,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,sibling=theorem,refname={Proposition}]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Example,]{prosty}
+\declaretheorem[style=prosty,sibling=theorem,refname={Example}]{example}
+\tcolorboxenvironment{example}{colback=LightGreen,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Exercise,]{prosty}
+\declaretheorem[style=prosty,numberwithin=section]{exercise}
+\tcolorboxenvironment{exercise}{colback=LightAquamarine,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Answer,]{prosty}
+\declaretheorem[style=prosty,numberwithin=section]{answer}
+\tcolorboxenvironment{answer}{colback=LightCadetBlue,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+% ---------- 罗马数字 ----------
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+% ---------- 标题格式 ----------
+% article 没有 \chapter，因此删除 \titleformat{\chapter}
+\titleformat{\section}{\raggedright\Large\bfseries}{\,\thesection\,}{1em}{}
+\titleformat{\subsection}{\raggedright\large\bfseries}{\,\thesubsection\,}{1em}{}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+
+% ------------------------------------------------------------------------------
+
+% ---------- 文档信息 ----------
+\title{\textbf{Seminar On Algebraic Geometry\\ Lecture Notes 1}}
+\title{%
+  \vspace*{-2cm}
+  \includegraphics[width=\textwidth]{SKy.png}\\[1.2cm]
+  \textbf{Seminar On Algebraic Geometry\\ Lecture Notes 1}%
+}
+\author{Zihang Zhang}
+\date{Octobaer 12, 2026}
+
+\begin{document}
+
+
+\maketitle
+\thispagestyle{empty}
+
+\tableofcontents
+\newpage
+
+\section{Sheaves}
+
+Grothendieck's creature in algebraic geometry arises mcuh from 
+differential geometry. Roughly speaking, Grothendieck generalized 
+both differential geometry and algebraic geometry, in order to provide 
+a new geomtric view with algebraic objects. 
+
+\begin{definition}
+    Let $(X,\mathcal{T})$ be a topology space. 
+    A \textbf{presheaf} $\mathscr{F}$ of  category $\mathcal{C}$ 
+    is a contravarinat functor 
+    $$\mathscr{F}: \mathsf{Top}(X) \to \mathscr{C},$$
+    where $\mathrm{Top}(X) = (\mathcal{T}, \subseteq)$ 
+    is a preorder category. 
+    
+    In other words, if $\mathscr{F}$ is a presheaf of $\mathrm{Ab}$, 
+    then for every open subset $U$ of $X$, 
+    there is an abelian group $\mathscr{F}(U)$ and for every 
+    inclusion $U \subseteq V$ of open subsets of $X$, 
+    there is a morphism of abelian groups 
+    $\rho_{VU} = \operatorname{res}_{V,U} : \mathscr{F} (V) \to \mathscr{F} (U)$. 
+    And it satisfies
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\mathscr{F}(\varnothing) = 0$; (Not necessary)
+        \item $\rho_{UU}=\operatorname{id}_{U}:\mathscr{F}(U) \to \mathscr{F}(U)$; 
+        \item If $U \subseteq V \subseteq W$ are three open subsets, 
+        then $\rho_{WU}=\rho_{WV}  \circ \rho_{VU}$. 
+    \end{enumerate}
+
+    \begin{center}
+        \begin{tikzcd}
+            U \arrow[r] \arrow[d,hook] & \mathscr{F}(U) \\
+            V \arrow[r] &  \mathscr{F}(V) \arrow[u,"\rho_{VU}"']
+        \end{tikzcd}
+    \end{center}
+
+    As a matter of terminology, if : $\mathscr{F}$ is a presheaf on $X$, 
+    we refer to: $\mathscr{F} ( U)$ as the \textbf{sections} of 
+    the presheaf $\mathscr{F}$ over the open set $U$, 
+    and we sometimes use the notation $\Gamma(U,\mathscr{F})$ 
+    to denote the group $\mathscr{F}(U)$. 
+    We call the maps $\rho_{VU}= \operatorname{res}_{V,U}$ 
+    \textbf{restriction maps}, and we sometimes 
+    write $s\mid_{V}$ instead of $\rho_{VU}(s)$, 
+    if $s \in \mathscr{F}(U)$. 
+
+    We always assume that $ \mathcal{C} $ be 
+    $ \mathsf{Ab} $, i.e., the category of abelian groups, 
+    in order to give the category of presheaves the abelian 
+    category constructure. 
+\end{definition}
+
+Simply, a presheaf is just a contravariant functor 
+$ \mathscr{F} : \mathcal{D} \to \mathcal{C} $. 
+A sheaf is a presheaf whose sections are, 
+in a technical sense, uniquely determined by their restrictions, 
+via "glueing together". 
+
+\begin{definition}
+    A presheaf $\mathscr{F}$ on a topological space $X$ 
+    is a \textbf{sheaf} if it satisfies the following 
+    supplementary conditions:
+    \begin{enumerate}[label=(\arabic*)]
+        \setcounter{enumi}{3}
+        \item \textbf{Identity axiom:} 
+            If $U$ is an open subset, 
+            if $\{V_{i}\}$ is an open covering of $U$, 
+            and if $s \in \mathscr{F}(U)$ is an element such 
+            that $s \mid_{V_{i}}=0$ for all $i$, 
+            then $s=0$. 
+            It is equivalanet with that  
+            $s \mid_{V_{i}}=t\mid_{V_{i}} \implies s=t$. 
+
+        \item \textbf{Glueing axiom:} If $U$ is an open subset, 
+        if $\{V_{i}\}$ is an open covering of $U$, 
+        and if we have elements $s_{i} \in \mathscr{F}(V_{i})$ 
+        for each $i$, with the property that for each $i,j$, 
+        $s_{i} \mid_{V_{i}\cap V_{j}}=s_{j} \mid_{V_{i}\cap V_{j}}$ 
+        then there is an (by (4), unique) element 
+        $s \in \mathscr{F}(U)$ such that $s \mid_{V_{i}} =s_{i}$ 
+        for each $i$. 
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    \cite[Ex. II 1.1]{hartsAG}
+    Let $A$ be an abelian group, and define the \textbf{constant presheaf} 
+    $\underline{A}_{\mathrm{pre}}$ associated to $A$ on the 
+    topological space $X$ to be the presheaf 
+    $U \mapsto A$ for all $U \neq \varnothing$, 
+    with restriction maps the identity. 
+    In particular, the constant presheaf $\underline{\mathbb{Z}}_{\mathrm{pre}}$ 
+    associated to $\mathbb{Z}$ is given by $U \mapsto \mathbb{Z}$, 
+    and any section $s \in \underline{\mathbb{Z}}_{\mathrm{pre}}(U)$ 
+    is an integer $s \in \mathbb{Z}$. 
+
+    \cite[II 1.0.3]{hartsAG} 
+    Let $X$ be a topological space, and $A$ an abelian group. 
+    We define the \textbf{constant sheaf} $\underline{A}$ on $X$ determined 
+    by $A$ as follows. 
+
+    Give $A$ the discrete topology, and for any open set 
+    $U \in X$, let $\underline{A} (U)$ be the group of all 
+    continuous maps of $U$ into $A$: 
+    $$\underline{A}(U):=C(U,A).$$ 
+    The restriction maps are the usual restrictions 
+    of maps. Since $ A $ is a discrete topological ring, 
+    each $ \underline{A}(U) $ is endowed with ring structure. 
+    Immediately, $ \underline{A} $ is a ring sheaf on $ X $. 
+
+    Note that for every connected open set $U$, 
+    $\underline{A} (U) \cong A$, whence the name "constant sheaf". 
+    To see this, let $s \in \mathscr{A}(U)$ be a section, 
+    then $U=\bigcup_{a \in A} s^{-1}(a)$. 
+    Since $U$ is connected, there is only one $s^{-1}(a)=U$ 
+    and the others are empty. 
+    Thus, we obtain a surjective homomorphism below 
+    $$\mathscr{A}(U) \to A \quad\text{with}\quad s \mapsto s(x),\, \forall x \in U. $$ 
+    It is also injective, since $ s(U)=\{0\} $ if and only if 
+    $ s =0 $. 
+
+    Therefore, if $ U $ is an open set whose connected componentes 
+    are open, then $ \underline{A}(U)= \prod A $, 
+    one for each connected components of $ U $. 
+
+\end{example}
+
+Here we define sheaves of modules in order to take a 
+more geometric viewpoint on sheaves. 
+They are studied in \cite[II.5]{hartsAG}.
+
+\begin{definition}
+    A \textbf{ringed space} is a pair $ (X,\mathscr{O}_{X}) $ 
+    consisting of a topological space $ X $ and a sheaf of rings 
+    $ \mathscr{O}_{X} $ on $ X $. 
+\end{definition}
+
+\begin{definition}
+    Let $ (X,\mathscr{O}_{X}) $ be a ringed space. 
+    A \textbf{sheaf of $ \mathscr{O}_{X} $-modules } is a sheaf 
+    $ \mathscr{F} $ on $ X $, such that for each open set $ U \subseteq X $, 
+    the abelian group $ \mathscr{F}(U) $ is an $ \mathscr{O}_{X} $-module, 
+    and for for each inclusion of open sets $ V \subseteq U $, 
+    the restriction homomorphism $ \mathscr{F}(U) \to \mathscr{F}(V) $ 
+    is compatible with the module structure via the ring homomorphism 
+    $ \mathscr{O}_{X}(U) \to \mathscr{O}_X(V) $. 
+\end{definition}
+
+Far from being abstract nonsense, 
+sheaf theory generalizes and unifies many geometric objects. 
+Here are some examples from geometry and analysis. 
+
+\begin{example}
+Let \(X\) be a topological space. For each open subset \(U\subseteq X\), 
+let \(C(U)\) denote the \(\mathbb{R}\)-algebra of continuous functions 
+\(U\to \mathbb{R}\), with restriction maps given by restriction of functions. 
+Then \(\mathscr{C}\), defined by \(\mathscr{C}(U)=C(U)\), is a sheaf of 
+\(\mathbb{R}\)-algebras on \(X\); the glueing axiom follows from the local 
+nature of continuity. In particular, if \(M\) is a smooth manifold, then the 
+structure sheaf \(\mathscr{O}_{M}\) is the sheaf of smooth functions, given by
+\[
+\mathscr{O}_{M}(U)=C^{\infty}(U).
+\]
+\end{example}
+
+\begin{example}
+Let \(X\) be a complex manifold. For each open subset \(U\subseteq X\), 
+let \(\mathcal{O}(U)\) denote the \(\mathbb{C}\)-algebra of holomorphic 
+functions \(U\to \mathbb{C}\), with restriction maps given by restriction 
+of functions. Then the structure sheaf \(\mathscr{O}_X\), defined by 
+\(\mathscr{O}_X(U)=\mathcal{O}(U)\), is a sheaf of \(\mathbb{C}\)-algebras 
+on \(X\): if \(\{U_i\}\) is an open cover of \(U\) and 
+\(f_i\in\mathcal{O}(U_i)\) agree on all overlaps \(U_i\cap U_j\), then 
+there is a unique \(f\in\mathcal{O}(U)\) restricting to each \(f_i\), 
+since holomorphicity is a local property. This is the holomorphic analogue 
+of the sheaf of smooth functions on a smooth manifold. 
+
+Already here one sees why one works with sheaves rather than only global 
+sections: on a compact connected complex manifold \(X\), every global 
+holomorphic function is constant, so \(\mathscr{O}_X(X)\cong\mathbb{C}\), 
+whereas the sheaf \(\mathscr{O}_X\) still encodes rich local holomorphic data.
+        \item Let \(M\) be a smooth manifold. For each open subset \(U\subseteq M\), let
+\(\Omega^k(U)\) denote the \(C^\infty(U)\)-module of smooth \(k\)-forms on
+\(U\), with restriction maps given by restriction of forms. Then
+\(\Omega^k\) is a sheaf of \(C^\infty_M\)-modules on \(M\). 
+
+Crucially, \(\Omega^k\) is not merely a
+sheaf of abelian groups: for \(f\in C^\infty_M(U)\) and
+\(\omega\in\Omega^k(U)\), the product \(f\omega\) is defined pointwise by
+\((f\omega)_p=f(p)\omega_p\), and restriction is compatible with this
+structure, making \(\Omega^k\) a sheaf of modules over the structure sheaf
+\(\mathscr{O}_{M}\). In particular, \(\Omega^0=\mathscr{O}_{M}\), and \(\Omega^1\) is
+the sheaf of sections of the cotangent bundle \(T^*M\). 
+
+Indeed, sheaves of modules provide an analogue of fibre bundles 
+in algebraic geometry.
+For example, $ \Omega^{k} $ is a $ \mathscr{O}_{M} $-module, 
+and is locally free of rank $ \binom{n}{k}$ over $ \mathscr{O}_{M} $,  
+hence corresponds to the vector bundle \(\bigwedge^k T^*M\), 
+i.e., $ \Omega^{k} = (-,\bigwedge^k T^*M) $. 
+
+There is a deep relation between sheaves of modules with bundles. 
+For example, in differential geometry, the Swan-Serre theorem states
+that: 
+for $ X $ a smooth manifold with $ \mathbb{R} $-algebra of 
+smooth functions $ C^{\infty}(X) $, there is an equivalence of 
+categories between that of finite rank smooth vector bundles over $ X $ 
+and finitely generated projective modules over $ C^{\infty}(X) $. 
+See \cite[Chapter 12]{nes} for more details. 
+\end{example}
+
+\begin{example}
+Let \(p:Y\to X\) be a continuous map. For each open subset \(U\subseteq X\),
+define
+\[
+\Gamma(Y/X)(U)=\{s:U\to Y \mid p\circ s=\mathrm{id}_U,\ s\text{ continuous}\},
+\]
+with restriction maps given by \(s\mapsto s|_V\). Then \(\Gamma(Y/X)\) is a
+sheaf on \(X\), called the \emph{sheaf of sections} of \(p\). 
+
+If \(p: Y \to X\) is a vector bundle, then \(\Gamma(Y/X)(U)\) is a
+\(C^\infty(U)\)-module, and \(\Gamma(Y/X)\) is a sheaf of
+\(C^\infty_X\)-modules, locally free of rank equal to the rank of the bundle.
+Indeed, the name "section" comes from such sections 
+in differential geometry. 
+    
+\end{example}
+
+
+\begin{example}
+    Let $ M $ be a smooth manifold, for any open subset $ U \subseteq X $, 
+    define $ C_{c}^{\infty}(U) $ be the $ \mathbb{R} $-vector space of 
+    smooth functions from $ U $ to $ \mathbb{R} $ with compact support. 
+    Then $ C_{c} $ forms a presheaf, which is not a sheaf in general. 
+
+    For example, let $ M= \mathbb{R} $, 
+    $ \varphi $ be a bump function such that 
+    $ \operatorname{supp}(\varphi) = [-1/3,1/3]$, and 
+    $ \varphi(0)=1 $. Let 
+    $ f(x)= \sum_{n \in \mathbb{Z}} \varphi(x-n) $. 
+    Then $ \operatorname{f}(\varphi) = \bigcup_{n \in \mathbb{Z}} [n-1/3,n+1/3] $, 
+    hence $ f \notin C_{c}(\mathbb{R}) $. 
+    Now let $ U_{n}:=(n-1/2,n+2/3) $ be some open subsets covering $ \mathbb{R} $. 
+    In each $ U_{n} $, 
+    $\operatorname{supp}(f \mid_{U_{n}})=[n-1/3,n+1/3]$ which is compact. 
+    However, the global section glueing by $ f\mid_{U_{n}} $ 
+    is identically $ f $, which is not in $ C_{c}^{\infty}(\mathbb{R})$. 
+
+    An interesting result is, as the dual topological space of 
+    $ C_{c}^{\infty}(U) $, the space of distributions 
+    $ \mathcal{D}'(U) $ forms a sheaf. 
+    For a brief introduction to this, see \cite[{4.5}]{wikiDistribution}.
+\end{example}
+
+Now we come back to classical algebraic geometry. 
+In \cite[I.3]{hartsAG}, we define the ring of regular functions on 
+an algebraic variety $ V $, denoted by $ \mathscr{O}(V) $. 
+
+\begin{example}
+    \cite[II.1.0.1]{hartsAG} 
+    Let $ V $ be an algebraic variety over the field $ k $. 
+    For each open set $ U \subseteq V $, let 
+    $ \mathscr{O}_{V}(U):=\mathscr{O}(U) $ be the ring of regular 
+    functions from $ U $ to $ k $. Then $ \mathscr{O}_{V} $ 
+    is a presheaf of rings on $ X $. 
+    
+    $ \mathscr{O}_{V} $ is a sheaf, which is called 
+    the \emph{sheaf of regular functions} on $ X $. 
+    This is because the regularity of a function is defined locally. 
+\end{example}
+
+Now we define the morphisms between presheaves on the same space. 
+
+\begin{definition}
+    For a presheaf $\mathscr{F}$ is a contravariant functor 
+    $\mathscr{F}: \mathsf{Top}(X) \to \mathsf{Ab}$, 
+    it forms a functor category 
+    $[\mathsf{Top}(X)^{\mathsf{op}},\mathsf{Ab}]$. 
+    We define the category of presheaves as 
+    $\mathsf{PSh}(X)=[\mathsf{Top}(X)^{\mathrm{op}},\mathsf{Ab}]$. 
+
+    Thus, the morphism $\varphi: \mathscr{F} \to \mathscr{G}$ 
+    is a natural transformation, 
+    which consists of morphisms of abelian groups 
+    $\varphi(U): \mathscr{F}(U) \to \mathscr{G}(U)$ 
+    for each open set $U$, such that whenever 
+    $V \subseteq U$ is an inclusion, the diagram 
+    \begin{center}
+        \begin{tikzcd}
+\mathscr{F}(U) \arrow[r, "\varphi(U)"] \arrow[d, "\rho_{UV}"] & \mathscr{G}(U) \arrow[d, "\rho_{UV}"] \\
+\mathscr{F}(V) \arrow[r, "\varphi(V)"]                        & \mathscr{G}(V)  
+        \end{tikzcd}
+    \end{center}
+    commutes. Or we can simply say that $ \varphi(s \mid_{V})=\varphi(s)\mid_{V} $, 
+    for any section $ s \in \mathscr{F}(U) $. 
+
+    We can simply define the category of sheaves on $ X $ 
+    to be the full subcategory $ \mathsf{Sh}(X) $ of $ \mathsf{PSh}(X) $. 
+\end{definition}
+
+\begin{definition}
+    Let $\varphi: \mathscr{F} \to \mathscr{G}$ be a morphism of presheaves. 
+    We define the presheaf kernel of $\varphi$, 
+    presheaf cokernel of $\varphi$, and presheaf image 
+    of $\varphi$ to be the presheaves given by 
+    $U \mapsto \mathrm{ker}\,\varphi(U)$, 
+    $U \mapsto \mathrm{coker}\,\varphi(U)$, 
+    and $U \mapsto \mathrm{im}\,\varphi(U)$ respectively. 
+\end{definition}
+
+Indeed, $ \mathsf{PSh} $ is an abelian category. 
+
+\begin{lemma}
+    If $\varphi: \mathscr{F} \to \mathscr{G}$ is a morphism 
+    of sheaves, then the presheaf kernel of $\varphi$, 
+    $\mathrm{ker}\,\varphi$ is also a sheaf. 
+\end{lemma}
+
+\begin{proof}
+    Notice that $ (\ker \varphi) (U)  \subseteq \mathscr{F}(U) $ 
+    hence we can use the sheaf axiom on $ \mathscr{F} $. 
+\end{proof}
+
+\section{Stalks \& Germs}
+
+Before we investigate the category of sheaves and operations on 
+sheaves, we first introduct the stalks of sheaves. 
+
+\begin{definition}[Stalks]
+    If $\mathscr{F}$ is a presheaf on $X$, and if $P$ is a point 
+    of $X$, we define the \emph{stalk} $\mathscr{F}_{P}$ of 
+    $\mathscr{F}$ at $P$ to be the direct limit (colimit) 
+    of the groups $\mathscr{F}(U)$ for all open sets $U$ 
+    containing $P$, via the restriction maps 
+    $\rho$, as 
+    $$\mathscr{F}_{P}:= \varinjlim \mathscr{F}(U).$$
+    The direct limit means that, for any open neighborhood $ U $ 
+    of $ P $, there exists a homomorphism 
+    $ \rho_{U} : \mathscr{F}(U) \to \mathscr{F}_{P}$, 
+    such that, for compatible homomorphisms $ \lambda_{U}: \mathscr{F}(U) \to A $, 
+    there exists a unique homomorphism $ \mathscr{F}_{P} \to A $. 
+
+    Elements in $ \mathscr{F}_{P} $ are called 
+    \emph{germs} of sections of $ \mathscr{F} $ at the point $ P $. 
+
+    In fact, the index category $\mathsf{Top}_{P}(X)$ 
+    with all open neighborhood $U$ of $P$ is 
+    a \emph{filtered category}, since for any open neighborhood 
+    $ U $ and $ V $ of $ P $, $ U \cap V $ is also an open 
+    neighborhood of $ P $. 
+    By \cite[1.4 D]{vakilTheRisingSea}, 
+    the germ in $\mathscr{F}_{P}$ has the form of $\langle U,s \rangle$ 
+    while $ U $  is the open neighborhood of $P$ and 
+    $s \in \mathscr{F}(U)$ under the equivalence relation
+     that 
+    $$\langle U,s \rangle = \langle V,t \rangle \Longleftrightarrow 
+    \,\,\exists\text{ an open neighborhood }W\subseteq U \cap V 
+    \text{ of }P \text{ s.t. } s\mid_{W}=t\mid_{W}.$$ 
+\end{definition}
+
+In fact, taking stalks gives a functor $ \mathsf{Sh}(X) \to \mathsf{Ab}$, 
+which is exact and left-adjoint. 
+
+\begin{example}[Analytic germs]
+    The name of germs came from analytic continuation. 
+    See \cite[Chapter 8]{ahlfors}. 
+\end{example}
+
+\begin{definition}[Etale space]
+    
+\end{definition}
+
+\section{Local Nature of Sheaves}
+
+\begin{lemma}
+    \label{lemma: taking stalks}
+    For every $P \in U$, there is a map 
+    $\mathscr{F}(U) \to \mathscr{F}_{P}$, 
+    sending a section $s \in \mathscr{F}(U)$ to 
+    the equivalence class of $(U,s)$, denoted $s_{P}$. 
+
+    If $\mathscr{F}$ is a sheaf, 
+    a section $s \in \mathscr{F}(U)$ of $\mathscr{F}$ over $U$ 
+    is determined by its images in the stalks $\mathscr{F}_{x}$ 
+    for all $x \in U$, i.e. $s=0$ if and only if 
+    $s_{P}=0$, for all $P \in U$. 
+    Equivalently, $s=t \in \mathscr{F}(U)$ 
+    if and only if $s_{P}=t_{P} \in \mathscr{F}_{P}$, 
+    for all $P \in U$.
+\end{lemma}
+
+\begin{proof}
+    For any germ $ (s_{P},U_{P}) $, such that $ S_{P}=0 $, 
+    we can obtain the zero section by glueing $ s_{P} $, 
+    since $ U_{P} $ forms an open cover of $ X $. 
+    By the identity axiom, any section glueing by $ s_{P} $ 
+    must be zero. 
+\end{proof}
+
+\begin{proposition}
+    \cite[2.4 N]{vakilTheRisingSea}
+    Consider the morphism $\varphi:\mathscr{F} \to \mathscr{G}$ 
+    of sheaves on the topology space $X$. 
+    Then, the conditions below are equivalent: 
+    \begin{enumerate}[label = (\arabic*)]
+    \item $\varphi$ is a monomorphism. 
+    \item $\varphi$ is injective on the level 
+        of stalks: $\varphi_{P}:\mathscr{F}_{P}\to \mathscr{G}_{P}$ 
+        is injective for all $P \in X$. 
+    \item $\mathrm{ker}\,\varphi=0$.  
+    \item $\varphi$ is injective on the level of open 
+    sets : $\varphi(U): \mathscr{F}(U) \to \mathscr{G}(U)$ 
+    is a monomorphism of $\mathrm{Ab}$, 
+    thus injective and $\mathrm{ker}\,\varphi(U) = (0)$, 
+    for all open set $U \subseteq X$. 
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    We prove this by $(2) \Longrightarrow (1) \Longrightarrow (3) \Longrightarrow (4) \Longrightarrow (2)$. 
+
+    $ (2) \implies (1) $ : By \ref{lemma: taking stalks}. 
+
+    $ (1) \implies (3)$ : By the definition of $\mathrm{ker}\,\varphi$ 
+    we could obtain an inclusion morphism 
+    $i : \mathrm{ker}\,\varphi \to \mathscr{F}$ 
+    and a zero morphism $0:\mathrm{ker}\,\varphi \to \mathscr{F}$ 
+    sending $(\mathrm{ker}\,\varphi)(U) \mapsto (0)$ 
+    inducing the commutative diagram below 
+    \begin{center}
+        \begin{tikzcd}
+    {\mathrm{ker}\, \varphi} \arrow[r,shift left,"i"] \arrow[r,shift right,"0"'] & \mathscr{F} \arrow[r,"\varphi"] & \mathscr{G}.
+    \end{tikzcd}
+    \end{center}
+    Since $ \varphi $ is a monomorphism, $ i $ must be $ 0 $, 
+    which means that $ \ker \varphi = 0 $. 
+
+    $ (3) \implies (4) $ : 
+    Notice that $ \ker (\varphi(U))= (\ker \varphi)(U) $. 
+
+    $ (4) \implies (2) $ :
+    Consider any sheaf morphism $f,g:\mathscr{H} \to \mathscr{F}$, 
+    they are given by the group homomorphisms 
+    $f(U),g(U): \mathscr{H}(U) \to \mathscr{F}(U)$. 
+    If $\varphi f = \varphi g$, then 
+    $\varphi(U)f(U)=\varphi(U)g(U)$, 
+    it follows that $f(U)=g(U)$ for $\varphi(U)$ is a 
+    monomorphism in $ \mathsf{Ab} $ for any open subset 
+    $U \subseteq X$. By the definition of morphisms, $f=g$. 
+
+\end{proof}
+
+\begin{proposition}
+    \cite[2.4 O]{vakilTheRisingSea}
+    Consider the morphism $\varphi:\mathscr{F} \to \mathscr{G}$ of sheaves 
+    on the topology space $X$. 
+    Then, the conditions below are equivalent: 
+    \begin{enumerate}[label = (\arabic*)]
+        \item $\varphi$ is an epimorphism. 
+        \item $\varphi$ is surjective on the level of stalks: 
+        $\varphi_{P}:\mathscr{F}_{P}\to \mathscr{G}_{P}$ is an 
+        epimorphism, thus surjective and 
+        $\mathrm{im}\,\varphi_{P} = \mathscr{G}_{P}$, 
+        for all $P \in X$. 
+        \item For every open set $ U \subseteq X $, 
+        and for every section $ s \in \mathscr{G}(U) $, 
+        there is a covering $ \{U_{i}\} $ of $ U $, 
+        and sections $ t_{i} \in \mathscr{F}(U_{i}) $ 
+        such that $ \varphi(t_{i})=s\mid_{U_{i}} $ for all $ i $.   
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+We prove \((1)\Rightarrow(2)\Rightarrow(3)\Rightarrow(1)\).
+
+\((1)\Rightarrow(2)\): Assume \(\varphi\) is an epimorphism. Let
+\(\operatorname{Im}\varphi\) be the image sheaf of \(\varphi\), so that
+\(\varphi\) factors as
+\[
+\mathscr F \xrightarrow{q} \operatorname{Im}\varphi
+\xrightarrow{i} \mathscr G,
+\]
+where \(i\) is a monomorphism. Since \(\varphi\) is an epimorphism, \(i\)
+is also an epimorphism: indeed, if \(\alpha\circ i=\beta\circ i\), then
+\(\alpha\circ\varphi=\beta\circ\varphi\), hence \(\alpha=\beta\). Thus
+\(i\) is both a monomorphism and an epimorphism, hence an isomorphism.
+Taking stalks gives
+\[
+\operatorname{im}\bigl(\varphi_P:\mathscr F_P\to\mathscr G_P\bigr)
+=(\operatorname{Im}\varphi)_P
+=\mathscr G_P,
+\]
+so \(\varphi_P\) is surjective for every \(P\in X\).
+
+\((2)\Rightarrow(3)\): Let \(U\subseteq X\) be open and \(s\in\mathscr G(U)\).
+For each \(P\in U\), the surjectivity of \(\varphi_P\) gives \(t_P\in
+\mathscr F_P\) with \(\varphi_P(t_P)=s_P\). Choose a representative
+\(t^P\in\mathscr F(V_P)\) of \(t_P\) on some open neighbourhood \(V_P\subseteq U\)
+of \(P\). Then \(\varphi(t^P)\) and \(s\) have the same stalk at \(P\), so
+there is an open neighbourhood \(W_P\subseteq V_P\) of \(P\) such that
+\[
+\varphi(t^P|_{W_P})=s|_{W_P}.
+\]
+The sets \(\{W_P\}_{P\in U}\) cover \(U\), and the sections
+\(t^P|_{W_P}\in\mathscr F(W_P)\) satisfy the required condition.
+
+\((3)\Rightarrow(1)\): Let \(\alpha,\beta:\mathscr G\to\mathscr H\) be morphisms
+of sheaves with \(\alpha\circ\varphi=\beta\circ\varphi\). For any open
+\(U\subseteq X\) and any \(s\in\mathscr G(U)\), condition (3) gives an open
+cover \(\{U_i\}\) of \(U\) and sections \(t_i\in\mathscr F(U_i)\) such that
+\(\varphi(t_i)=s|_{U_i}\). Then
+\[
+\alpha(s)|_{U_i}
+=\alpha(\varphi(t_i))
+=\beta(\varphi(t_i))
+=\beta(s)|_{U_i}.
+\]
+Since the \(U_i\) cover \(U\), we get \(\alpha(s)=\beta(s)\). Hence
+\(\alpha=\beta\), so \(\varphi\) is an epimorphism.
+
+Thus \((1)\Leftrightarrow(2)\Leftrightarrow(3)\).
+\end{proof}
+
+\begin{proposition}[1.1]
+    
+\end{proposition}
+
+
+
+\section{Sheafification}
+
+
+
+\section{Historical Remark}
+
+\printbibliography
+
+
+\end{document}

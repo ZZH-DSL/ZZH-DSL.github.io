@@ -1,0 +1,171 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{hartsAG}{book}{}
+      \name{author}{1}{}{%
+        {{hash=ee65baaab88f9233fbad3d51c399ee25}{%
+           family={Hartshorne},
+           familyi={H\bibinitperiod},
+           given={Robin},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Science \& Business Media}%
+      }
+      \strng{namehash}{ee65baaab88f9233fbad3d51c399ee25}
+      \strng{fullhash}{ee65baaab88f9233fbad3d51c399ee25}
+      \strng{bibnamehash}{ee65baaab88f9233fbad3d51c399ee25}
+      \strng{authorbibnamehash}{ee65baaab88f9233fbad3d51c399ee25}
+      \strng{authornamehash}{ee65baaab88f9233fbad3d51c399ee25}
+      \strng{authorfullhash}{ee65baaab88f9233fbad3d51c399ee25}
+      \field{labelalpha}{Ha}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{shorthand}{Ha}
+      \field{title}{Algebraic geometry}
+      \field{year}{1977}
+    \endentry
+    \entry{nes}{book}{}
+      \name{author}{1}{}{%
+        {{hash=7497754729fc1d1938a08b69f25f6c66}{%
+           family={Nestruev},
+           familyi={N\bibinitperiod},
+           given={Jet},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag, New York}%
+      }
+      \strng{namehash}{7497754729fc1d1938a08b69f25f6c66}
+      \strng{fullhash}{7497754729fc1d1938a08b69f25f6c66}
+      \strng{bibnamehash}{7497754729fc1d1938a08b69f25f6c66}
+      \strng{authorbibnamehash}{7497754729fc1d1938a08b69f25f6c66}
+      \strng{authornamehash}{7497754729fc1d1938a08b69f25f6c66}
+      \strng{authorfullhash}{7497754729fc1d1938a08b69f25f6c66}
+      \field{labelalpha}{Ne}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Russian}
+      \field{isbn}{0-387-95543-7}
+      \field{note}{Joint work of A. M.\ Astashov, A. B.\ Bocharov, S. V.\ Duzhin, A. B.\ Sossinsky, A. M.\ Vinogradov and M. M.\ Vinogradov}
+      \field{series}{Graduate Texts in Mathematics}
+      \field{shorthand}{Ne}
+      \field{title}{Smooth manifolds and observables}
+      \field{volume}{220}
+      \field{year}{2003}
+      \field{pages}{xiv+222}
+      \range{pages}{-1}
+    \endentry
+    \entry{wikiDistribution}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=22ce87ecbf938f6bc5403e5938971e87}{%
+           family={HandWiki},
+           familyi={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{22ce87ecbf938f6bc5403e5938971e87}
+      \strng{fullhash}{22ce87ecbf938f6bc5403e5938971e87}
+      \strng{bibnamehash}{22ce87ecbf938f6bc5403e5938971e87}
+      \strng{authorbibnamehash}{22ce87ecbf938f6bc5403e5938971e87}
+      \strng{authornamehash}{22ce87ecbf938f6bc5403e5938971e87}
+      \strng{authorfullhash}{22ce87ecbf938f6bc5403e5938971e87}
+      \field{labelalpha}{WkDi}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online; accessed 12-October-2026]}
+      \field{shorthand}{WkDi}
+      \field{title}{Distribution (mathematics) --- HandWiki{}}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://handwiki.org/wiki/index.php?title=Distribution_(mathematics)&oldid=3906666
+      \endverb
+      \verb{url}
+      \verb https://handwiki.org/wiki/index.php?title=Distribution_(mathematics)&oldid=3906666
+      \endverb
+    \endentry
+    \entry{vakilTheRisingSea}{book}{}
+      \name{author}{1}{}{%
+        {{hash=fd27b54a95453be8ed6a0951d5bc5075}{%
+           family={Vakil},
+           familyi={V\bibinitperiod},
+           given={Ravi},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Princeton University Press}%
+      }
+      \strng{namehash}{fd27b54a95453be8ed6a0951d5bc5075}
+      \strng{fullhash}{fd27b54a95453be8ed6a0951d5bc5075}
+      \strng{bibnamehash}{fd27b54a95453be8ed6a0951d5bc5075}
+      \strng{authorbibnamehash}{fd27b54a95453be8ed6a0951d5bc5075}
+      \strng{authornamehash}{fd27b54a95453be8ed6a0951d5bc5075}
+      \strng{authorfullhash}{fd27b54a95453be8ed6a0951d5bc5075}
+      \field{labelalpha}{Va}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-0691268682}
+      \field{shorthand}{Va}
+      \field{title}{The Rising Sea: Foundations of Algebraic Geometry}
+      \field{year}{2025}
+    \endentry
+    \entry{ahlfors}{book}{}
+      \name{author}{1}{}{%
+        {{hash=334876c58f819ca13776125e13ef13a0}{%
+           family={Ahlfors},
+           familyi={A\bibinitperiod},
+           given={Lars\bibnamedelima V.},
+           giveni={L\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill Book Co., New York}%
+      }
+      \strng{namehash}{334876c58f819ca13776125e13ef13a0}
+      \strng{fullhash}{334876c58f819ca13776125e13ef13a0}
+      \strng{bibnamehash}{334876c58f819ca13776125e13ef13a0}
+      \strng{authorbibnamehash}{334876c58f819ca13776125e13ef13a0}
+      \strng{authornamehash}{334876c58f819ca13776125e13ef13a0}
+      \strng{authorfullhash}{334876c58f819ca13776125e13ef13a0}
+      \field{labelalpha}{Ah}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Third}
+      \field{isbn}{0-07-000657-1}
+      \field{note}{An introduction to the theory of analytic functions of one complex variable}
+      \field{series}{International Series in Pure and Applied Mathematics}
+      \field{shorthand}{Ah}
+      \field{title}{Complex analysis}
+      \field{year}{1978}
+      \field{pages}{xi+331}
+      \range{pages}{-1}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

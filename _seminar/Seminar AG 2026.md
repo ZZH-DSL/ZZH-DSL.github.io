@@ -49,7 +49,7 @@ and so on.
 
 | Time | Topics | Hartshorne | Speaker |
 |---|--------|------------|---------|
-| 2026/10/12 | Sheaves, stalks, local nature of sheaves, sheafification | II.1 | 章梓杭 |
+| 2026/10/12 | Sheaves, stalks, local nature of sheaves, sheafification [Notes 1](/latex/Notes%20on%20Seminar%20AG%202026/Lecture%201.pdf) | II.1 | 章梓杭 |
 | 2 | $\mathsf{Sh}$, base sheaves and glueing sheaves, locally ringed space | II.1 | 章梓杭 |
 | 3 | Affine schemes, morphisms to affine schemes, glueing schemes | II.2 | 章梓杭 |
 | 4 | $\operatorname{Proj} S$, functor from $\mathsf{Var}_{k}$ to $\mathsf{Sch}_{k}$, functor of points | II.2 |  |
