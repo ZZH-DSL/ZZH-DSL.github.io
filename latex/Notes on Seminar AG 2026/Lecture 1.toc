@@ -1,5 +1,0 @@
-\contentsline {section}{\numberline {1}Sheaves}{2}{section.1}%
-\contentsline {section}{\numberline {2}Stalks \& Germs}{7}{section.2}%
-\contentsline {section}{\numberline {3}Local Nature of Sheaves}{7}{section.3}%
-\contentsline {section}{\numberline {4}Sheafification}{10}{section.4}%
-\contentsline {section}{\numberline {5}Historical Remark}{10}{section.5}%
