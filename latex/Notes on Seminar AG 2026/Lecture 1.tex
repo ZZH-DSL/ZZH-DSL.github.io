@@ -116,6 +116,13 @@
 
 % ------------------------------------------------------------------------------
 
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\PSh}{\mathsf{PSh}}
+\newcommand{\Sh}{\mathsf{Sh}}
+\newcommand{\sh}{\operatorname{sh}}
+\newcommand{\Hom}{\operatorname{Hom}}
+
 % ---------- 文档信息 ----------
 \title{\textbf{Seminar On Algebraic Geometry\\ Lecture Notes 1}}
 \title{%
@@ -124,7 +131,7 @@
   \textbf{Seminar On Algebraic Geometry\\ Lecture Notes 1 (Incomplete version)}%
 }
 \author{Zihang Zhang}
-\date{Octobaer 12, 2026}
+\date{October 12, 2026}
 
 \begin{document}
 
@@ -219,9 +226,23 @@ via "glueing together".
     \end{enumerate}
 \end{definition}
 
+\begin{lemma}
+    Let $ \mathscr{F} $ be a sheaf on a topological space $ X $. 
+    If $ U $ and $ V $ are disjoint open subsets of $ X $, 
+    then $ \mathscr{F}(U \amalg V) \cong \mathscr{F}(U) \times \mathscr{F}(V) $. 
+\end{lemma}
+
+\begin{proof}
+    The isomorphism is given by $ s \mapsto (s \mid_{U}, s \mid_{V}) $, 
+    and the inverse is given by $ (s_{1},s_{2}) \mapsto s$, 
+    where $ s $ is glued by $ s_{1} $ and $ s_{2} $, 
+    since $ \{U,V\} $ is naturally an open cover of $ U \amalg V $. 
+\end{proof}
+
 \begin{example}
+    \label{eg: constant sheaf}
     \cite[Ex. II 1.1]{hartsAG}
-    Let $A$ be an abelian group, and define the \textbf{constant presheaf} 
+    Let $A$ be an abelian group (resp., ring), and define the \textbf{constant presheaf} 
     $\underline{A}_{\mathrm{pre}}$ associated to $A$ on the 
     topological space $X$ to be the presheaf 
     $U \mapsto A$ for all $U \neq \varnothing$, 
@@ -231,28 +252,28 @@ via "glueing together".
     and any section $s \in \underline{\mathbb{Z}}_{\mathrm{pre}}(U)$ 
     is an integer $s \in \mathbb{Z}$. 
 
-    \cite[II 1.0.3]{hartsAG} 
-    Let $X$ be a topological space, and $A$ an abelian group. 
+    \cite[Example 1.0.3]{hartsAG} 
+    Let $X$ be a topological space, and $A$ an abelian group (resp., ring). 
     We define the \textbf{constant sheaf} $\underline{A}$ on $X$ determined 
     by $A$ as follows. 
 
     Give $A$ the discrete topology, and for any open set 
-    $U \in X$, let $\underline{A} (U)$ be the group of all 
+    $U \in X$, let $\underline{A} (U)$ be the group (resp., ring) of all 
     continuous maps of $U$ into $A$: 
     $$\underline{A}(U):=C(U,A).$$ 
     The restriction maps are the usual restrictions 
-    of maps. Since $ A $ is a discrete topological ring, 
-    each $ \underline{A}(U) $ is endowed with ring structure. 
-    Immediately, $ \underline{A} $ is a ring sheaf on $ X $. 
+    of maps. Since $ A $ is a discrete topological group (resp., ring), 
+    each $ \underline{A}(U) $ is endowed with group (resp., ring) structure. 
+    Immediately, $ \underline{A} $ is an abelian group sheaf (resp., ring) on $ X $. 
 
     Note that for every connected open set $U$, 
     $\underline{A} (U) \cong A$, whence the name "constant sheaf". 
-    To see this, let $s \in \mathscr{A}(U)$ be a section, 
+    To see this, let $s \in \underline{A}(U)$ be a section, 
     then $U=\bigcup_{a \in A} s^{-1}(a)$. 
     Since $U$ is connected, there is only one $s^{-1}(a)=U$ 
     and the others are empty. 
     Thus, we obtain a surjective homomorphism below 
-    $$\mathscr{A}(U) \to A \quad\text{with}\quad s \mapsto s(x),\, \forall x \in U. $$ 
+    $$\underline{A}(U) \to A \quad\text{with}\quad s \mapsto s(x),\, \forall x \in U. $$ 
     It is also injective, since $ s(U)=\{0\} $ if and only if 
     $ s =0 $. 
 
@@ -280,7 +301,9 @@ They are studied in \cite[II.5]{hartsAG}.
     and for for each inclusion of open sets $ V \subseteq U $, 
     the restriction homomorphism $ \mathscr{F}(U) \to \mathscr{F}(V) $ 
     is compatible with the module structure via the ring homomorphism 
-    $ \mathscr{O}_{X}(U) \to \mathscr{O}_X(V) $. 
+    $ \mathscr{O}_{X}(U) \to \mathscr{O}_X(V) $, that is, 
+    for any $ a \in \mathscr{O}_{X}(U) $ and $ s \in \mathscr{F}(U) $, 
+    we have $ (a \cdot s)\mid_{V} = (a\mid_{V}) \cdot (s \mid_{V}) $. 
 \end{definition}
 
 Far from being abstract nonsense, 
@@ -415,6 +438,8 @@ Now we define the morphisms between presheaves on the same space.
     $[\mathsf{Top}(X)^{\mathsf{op}},\mathsf{Ab}]$. 
     We define the category of presheaves as 
     $\mathsf{PSh}(X)=[\mathsf{Top}(X)^{\mathrm{op}},\mathsf{Ab}]$. 
+    In general, we define $\mathsf{PSh}(X,\mathcal{C})=[\mathsf{Top}(X)^{\mathrm{op}},\mathcal{C}]$, 
+    for any category $ \mathcal{C} $. 
 
     Thus, the morphism $\varphi: \mathscr{F} \to \mathscr{G}$ 
     is a natural transformation, 
@@ -432,7 +457,7 @@ Now we define the morphisms between presheaves on the same space.
     for any section $ s \in \mathscr{F}(U) $. 
 
     We can simply define the category of sheaves on $ X $ 
-    to be the full subcategory $ \mathsf{Sh}(X) $ of $ \mathsf{PSh}(X) $. 
+    to be the full subcategory $ \mathsf{Sh}(X):=\mathsf{Sh}(X,\mathsf{Ab}) $ of $ \mathsf{PSh}(X) $. 
 \end{definition}
 
 \begin{definition}
@@ -446,6 +471,12 @@ Now we define the morphisms between presheaves on the same space.
 \end{definition}
 
 Indeed, $ \mathsf{PSh} $ is an abelian category. 
+We denote the cokernel of $ \varphi $ in $ \mathsf{PSh} $ by 
+$ \operatorname{coker}_{\mathsf{PSh}} \varphi $ and the image of $ \varphi $ in $ \mathsf{PSh} $ by 
+$ \operatorname{im}_{\mathsf{PSh}} \varphi $, 
+since they are not sheaves in general. 
+However, the kernel of $ \varphi $ in $ \mathsf{PSh} $ is a sheaf, 
+by the lemma below. 
 
 \begin{lemma}
     If $\varphi: \mathscr{F} \to \mathscr{G}$ is a morphism 
@@ -498,16 +529,60 @@ sheaves, we first introduct the stalks of sheaves.
 In fact, taking stalks gives a functor $ \mathsf{Sh}(X) \to \mathsf{Ab}$, 
 which is exact and left-adjoint. 
 
-\begin{example}[Analytic germs]
-    The name of germs came from analytic continuation. 
-    See \cite[Chapter 8]{ahlfors}. 
+\begin{example}
+    Let $X$ be a complex manifold and let $\mathscr{O}_{X}$ 
+    be the sheaf of holomorphic functions on $X$. 
+    If $\dim_{\mathbb{C}} X = n$ and $z_1,\dots,z_n$ are local 
+    holomorphic coordinates centered at $P \in X$, then the germ of a 
+    holomorphic function is uniquely determined by its Taylor 
+    expansion at $P$. Hence
+    $$\mathscr{O}_{X,P} \cong \mathbb{C}\{z_1,\dots,z_n\},$$
+    the ring of convergent power series in $n$ variables. 
+    This stalk is a local ring, whose maximal ideal consists of 
+    germs vanishing at $P$.
 \end{example}
 
-\begin{definition}[Etale space]
+\begin{example}
+    The name of germs came from analytic continuation. 
+    See \cite[Chapter 8]{ahlfors}.
     
-\end{definition}
+    A \emph{function element} is a pair $(D,f)$ consisting of an open
+    disk $D \subset \mathbb{C}$ and a holomorphic function $f$ on $D$.
+    Two function elements $(D,f)$ and $(E,g)$ define the same
+    \emph{germ} at $z_0 \in D \cap E$ if $f = g$ in a neighborhood of $z_0$.
+    The set of all such germs, denoted $\mathcal{O}$, carries a natural
+    topology: for each function element $(D,f)$, the collection
+    $\{[f]_z : z \in D\}$ is a basic open neighborhood of each of its
+    germs. The projection
+    $$\pi:\mathcal{O}\to\mathbb{C}, \qquad [f]_z \mapsto z,$$
+    is then a local homeomorphism, because the map
+    $z \mapsto [f]_z$ is a homeomorphism from $D$ onto
+    $\{[f]_z : z \in D\}$ with inverse $\pi$.
+    Thus $\mathcal{O}$ is a one-dimensional complex manifold, i.e. a
+    Riemann surface, and $\pi$ is holomorphic.
+    Its connected components are the Riemann surfaces of the
+    \emph{global analytic functions} obtained by analytic continuation:
+    continuing a germ $[f]_a$ along a curve $\gamma$ from $a$ to $b$
+    amounts to lifting $\gamma$ to $\mathcal{O}$, so the continuation
+    becomes a single-valued holomorphic function on the component
+    containing $[f]_a$.
+\end{example}
 
-\section{Local Nature of Sheaves}
+\begin{example}
+    More generally, let $X$ be a topological space. An
+    \emph{\'etale space} over $X$ is a continuous map
+    $\pi:\mathcal{F}\to X$ which is a local homeomorphism.
+    The fiber $\mathcal{F}_x = \pi^{-1}(x)$ is the \emph{stalk} at $x$.
+    If each stalk carries the structure of an abelian group and the
+    group operations are continuous, this is the old-fashioned
+    definition of a \emph{sheaf of abelian groups} on $X$; the
+    sections over an open set $U$ are the continuous maps
+    $s:U\to \mathcal{F}$ with $\pi \circ s = \mathrm{id}_U$.
+    The modern sheaf $\mathscr{F}$ associated with an \'etale space
+    is obtained by taking all sections over open subsets.
+\end{example}
+
+\section{Local Nature of Sheaves I}
 
 \begin{lemma}
     \label{lemma: taking stalks}
@@ -535,7 +610,8 @@ which is exact and left-adjoint.
 \end{proof}
 
 \begin{proposition}
-    \cite[2.4 N]{vakilTheRisingSea}
+    \label{prop: injective morphisms}
+    \cite[2.4 N]{vakilTheRisingSea}, \cite[Ex 1.3 (a)]{hartsAG} 
     Consider the morphism $\varphi:\mathscr{F} \to \mathscr{G}$ 
     of sheaves on the topology space $X$. 
     Then, the conditions below are equivalent: 
@@ -551,6 +627,9 @@ which is exact and left-adjoint.
     thus injective and $\mathrm{ker}\,\varphi(U) = (0)$, 
     for all open set $U \subseteq X$. 
     \end{enumerate}
+
+    We say that $\varphi$ is \emph{injective} 
+    if it satisfies the above equivalent conditions.
 \end{proposition}
 
 \begin{proof}
@@ -584,88 +663,430 @@ which is exact and left-adjoint.
 
 \end{proof}
 
+Since $ \im_{\mathsf{PSh}} $ is not a sheaf in general, 
+the case of epimorphisms is more complicated. 
+We need to introduce the sheafification of presheaves, 
+in order to obtain the image of a morphism of sheaves. 
+
+\section{Sheafification}
+
 \begin{proposition}
-    \cite[2.4 O]{vakilTheRisingSea}
+    \cite[Proposition 1.2]{hartsAG}
+    Given a presheaf \(\mathscr{F}\), there is a sheaf
+    \(\mathscr{F}^{\sh}\) and a morphism
+    \(\sh:\mathscr{F}\to\mathscr{F}^{\sh}\)
+    with the following universal property: for any sheaf \(\mathscr{G}\)
+    and any morphism of presheaves
+    \(\varphi:\mathscr{F}\to\mathscr{G}\)
+    (where \(\mathscr{G}\) is regarded as a presheaf),
+    there is a unique morphism of sheaves
+    \(\psi:\mathscr{F}^{\sh}\to\mathscr{G}\)
+    such that \(\varphi=\psi\circ\sh\).
+
+    \begin{center}
+    \begin{tikzcd}
+        \mathscr{F} \arrow[r,"\sh"] \arrow[dr,"\varphi"'] 
+        & \mathscr{F}^{\sh} \arrow[d,dashed,"\exists ! \psi"] \\
+        & \mathscr{G}
+    \end{tikzcd}
+    \end{center}
+
+    Furthermore the pair \((\mathscr{F}^{\sh},\sh)\)
+    is unique up to a unique isomorphism.
+    We call \(\mathscr{F}^{\sh}\) \emph{the sheaf associated to the presheaf}
+    \(\mathscr{F}\), or \emph{the sheafification of} \(\mathscr{F}\).
+\end{proposition}
+
+\begin{proof}
+    We construct the sheafification \(\mathscr{F}^{\sh}\) as follows.
+    For any open subset \(U\), let \(\mathscr{F}^{\sh}(U)\) be the set
+    of functions
+    \[
+        s: U \longrightarrow \coprod_{P \in U} \mathscr{F}_{P}
+    \]
+    such that
+    \begin{enumerate}[label = (\arabic*)]
+        \item for each \(P \in U\), \(s(P) \in \mathscr{F}_{P}\), and
+        \item for each \(P \in U\), there is an open neighborhood
+        \(V \subseteq U\) of \(P\), and an element
+        \(t \in \mathscr{F}(V)\), such that for all \(Q \in V\),
+        the germ \(t_{Q}\) of \(t\) at \(Q\) is equal to \(s(Q)\).
+    \end{enumerate}
+
+    By construction, \(\sh\) is naturally defined by sending
+    \(s \in \mathscr{F}(U)\) to the function \(P \mapsto s_{P}\).
+    The restriction maps are defined by restricting the domain of
+    these functions.
+
+    We now verify that \(\mathscr{F}^{\sh}\) is a sheaf.
+    For the identity axiom, let \(U \subseteq X\) be open, let
+    \(\{U_{i}\}\) be an open cover of \(U\), and let
+    \(s \in \mathscr{F}^{\sh}(U)\) satisfy
+    \(s|_{U_{i}} = 0\) for all \(i\).
+    Since the restriction maps are restrictions of functions,
+    \(s|_{U_{i}}(P) = s(P)\) for every \(P \in U_{i}\).
+    Given \(P \in U\), choose \(i\) with \(P \in U_{i}\).
+    Then
+    \[
+        s(P) = s|_{U_{i}}(P) = 0.
+    \]
+    Hence \(s = 0\).
+
+    For the glueing axiom, suppose we are given sections
+    \(s_{i} \in \mathscr{F}^{\sh}(U_{i})\) such that
+    \[
+        s_{i}|_{U_{i} \cap U_{j}}
+        =
+        s_{j}|_{U_{i} \cap U_{j}}
+    \]
+    for all \(i,j\). Define
+    \(s: U \to \coprod_{P \in U} \mathscr{F}_{P}\) by
+    \(s(P) = s_{i}(P)\) whenever \(P \in U_{i}\).
+    This is well defined by the compatibility on overlaps.
+    To see that \(s \in \mathscr{F}^{\sh}(U)\), fix \(P \in U\)
+    and choose \(i\) with \(P \in U_{i}\).
+    Since \(s_{i} \in \mathscr{F}^{\sh}(U_{i})\), there is an open
+    neighborhood \(V \subseteq U_{i}\) of \(P\) and an element
+    \(t \in \mathscr{F}(V)\) such that
+    \(t_{Q} = s_{i}(Q)\) for all \(Q \in V\).
+    Then \(t_{Q} = s(Q)\) for all \(Q \in V\), so the local
+    condition holds at \(P\). Thus \(s \in \mathscr{F}^{\sh}(U)\),
+    and \(s|_{U_{i}} = s_{i}\) for every \(i\), because the two
+    functions agree at each point of \(U_{i}\).
+    Therefore \(\mathscr{F}^{\sh}\) is a sheaf.
+
+    Now we prove the universal property.
+    Let \(\varphi:\mathscr{F}\to\mathscr{G}\) be a morphism of
+    presheaves, with \(\mathscr{G}\) a sheaf.
+    Let \(s \in \mathscr{F}^{\sh}(U)\).
+    For each \(P \in U\), by the construction of
+    \(\mathscr{F}^{\sh}\), there is an open neighborhood
+    \(V_{P} \subseteq U\) of \(P\) and an element
+    \(t^{P} \in \mathscr{F}(V_{P})\) such that
+    \[
+        s(Q) = t^{P}_{Q}
+        \qquad
+        \text{for all } Q \in V_{P}.
+    \]
+    We claim that for any \(P,Q \in U\), the sections
+    \(\varphi(t^{P})\) and \(\varphi(t^{Q})\) agree on
+    \(V_{P}\cap V_{Q}\). Indeed, for every
+    \(R \in V_{P}\cap V_{Q}\), we have
+    \[
+        \varphi_{R}\bigl(t^{P}_{R}\bigr)
+        =
+        \varphi_{R}\bigl(s(R)\bigr)
+        =
+        \varphi_{R}\bigl(t^{Q}_{R}\bigr).
+    \]
+    Thus the germs of \(\varphi(t^{P})\) and \(\varphi(t^{Q})\)
+    at every point of \(V_{P}\cap V_{Q}\) coincide.
+    Since \(\mathscr{G}\) is a sheaf,
+    \autoref{lemma: taking stalks} implies
+    \[
+        \varphi(t^{P})|_{V_{P}\cap V_{Q}}
+        =
+        \varphi(t^{Q})|_{V_{P}\cap V_{Q}}.
+    \]
+    Therefore, by the glueing axiom for the sheaf \(\mathscr{G}\),
+    there exists a unique section
+    \(\psi(s) \in \mathscr{G}(U)\) such that
+    \[
+        \psi(s)|_{V_{P}} = \varphi(t^{P})
+        \qquad
+        \text{for all } P \in U.
+    \]
+    The section \(\psi(s)\) is independent of the choices of
+    \(V_{P}\) and \(t^{P}\): if \(W_{P},u^{P}\) is another choice,
+    then on \(V_{P}\cap W_{P}\) the sections
+    \(\varphi(t^{P})\) and \(\varphi(u^{P})\) have the same germs
+    at every point, hence are equal because \(\mathscr{G}\) is a
+    sheaf; uniqueness in the glueing axiom then gives the same
+    global section.
+
+    It is immediate from the local description that \(\psi\) is
+    compatible with restriction maps, hence \(\psi\) is a morphism
+    of sheaves. Moreover, for \(t \in \mathscr{F}(U)\), the section
+    \(\psi(\sh(t))\) agrees locally with \(\varphi(t)\), so
+    \(\psi\circ\sh = \varphi\).
+
+    Finally, suppose that
+    \(\psi':\mathscr{F}^{\sh}\to\mathscr{G}\) is another morphism
+    of sheaves such that \(\psi'\circ\sh = \varphi\).
+    For \(s \in \mathscr{F}^{\sh}(U)\) and \(P \in U\), using the
+    same local data \(V_{P},t^{P}\), we have
+    \[
+        \psi'(s)|_{V_{P}}
+        =
+        \psi'(\sh(t^{P}))|_{V_{P}}
+        =
+        \varphi(t^{P})
+        =
+        \psi(s)|_{V_{P}}.
+    \]
+    Since \(\mathscr{G}\) is a sheaf, this implies
+    \(\psi'(s)=\psi(s)\). Hence \(\psi'=\psi\).
+    The uniqueness of \((\mathscr{F}^{\sh},\sh)\) up to a unique
+    isomorphism follows formally from the universal property.
+\end{proof}
+
+\begin{lemma}
+    \label{lemma: sheafification on stalks}
+    \cite[2.4 M]{vakilTheRisingSea}
+    The sheafification
+    \(\sh:\mathscr{F}\to\mathscr{F}^{\sh}\)
+    induces an isomorphism on stalks:
+    \[
+        \sh_{P}:\mathscr{F}_{P}
+        \longrightarrow
+        \mathscr{F}^{\sh}_{P},
+        \qquad
+        \forall P \in X.
+    \]
+
+    Conversely, let \(\mathscr{F}\) be a presheaf,
+    let \(\mathscr{G}\) be a sheaf, and let
+    \(\varphi:\mathscr{F}\to\mathscr{G}\) be a morphism of
+    presheaves. If the induced map
+    \(\varphi_{P}:\mathscr{F}_{P}\to\mathscr{G}_{P}\)
+    is an isomorphism for all \(P \in X\), then the induced
+    morphism
+    \(\varphi^{\sh}:\mathscr{F}^{\sh}\to\mathscr{G}\)
+    is an isomorphism.
+\end{lemma}
+
+\begin{proof}
+    First we prove that \(\sh_{P}\) is injective.
+    Let \(\alpha \in \mathscr{F}_{P}\), and choose a
+    representative \(s \in \mathscr{F}(U)\) of \(\alpha\).
+    Suppose that \(\sh_{P}(\alpha)=0\).
+    Then \(\sh(s)_{P}=0\) in \(\mathscr{F}^{\sh}_{P}\).
+    Hence there is an open neighborhood \(V \subseteq U\) of \(P\)
+    such that
+    \[
+        \sh(s)|_{V} = 0
+        \qquad
+        \text{in } \mathscr{F}^{\sh}(V).
+    \]
+    For every \(Q \in V\), we have
+    \[
+        \sh(s)(Q) = s_{Q}.
+    \]
+    Therefore \(s_{Q}=0\) for every \(Q \in V\).
+    In particular, taking \(Q=P\), we obtain \(s_{P}=0\) in
+    \(\mathscr{F}_{P}\), that is, \(\alpha=0\).
+    Thus \(\sh_{P}\) is injective.
+
+    Next we prove that \(\sh_{P}\) is surjective.
+    Let \(\beta \in \mathscr{F}^{\sh}_{P}\), and choose a
+    representative
+    \(\sigma \in \mathscr{F}^{\sh}(U)\) of \(\beta\).
+    By the construction of \(\mathscr{F}^{\sh}\), after possibly
+    shrinking \(U\) to an open neighborhood \(V\) of \(P\), there
+    exists \(t \in \mathscr{F}(V)\) such that
+    \[
+        t_{Q} = \sigma(Q)
+        \qquad
+        \text{for all } Q \in V.
+    \]
+    Hence \(\sh(t)|_{V} = \sigma|_{V}\), and therefore
+    \[
+        \sh_{P}(t_{P})
+        =
+        \sh(t)_{P}
+        =
+        \sigma_{P}
+        =
+        \beta.
+    \]
+    Thus \(\sh_{P}\) is surjective.
+    Consequently \(\sh_{P}\) is an isomorphism for every
+    \(P \in X\).
+
+    For the converse, the universal property of sheafification
+    gives a unique morphism
+    \(\varphi^{\sh}:\mathscr{F}^{\sh}\to\mathscr{G}\)
+    such that
+    \(\varphi^{\sh}\circ\sh = \varphi\).
+    On stalks, since \(\sh_{P}\) is an isomorphism, we obtain
+    \[
+        \varphi^{\sh}_{P}
+        =
+        \varphi_{P}\circ\sh_{P}^{-1}.
+    \]
+    By assumption \(\varphi_{P}\) is an isomorphism for every
+    \(P \in X\). Hence \(\varphi^{\sh}_{P}\) is an isomorphism
+    for every \(P \in X\).
+    By \autoref{prop: isomorphism of sheaves},
+    \(\varphi^{\sh}\) is an isomorphism.
+\end{proof}
+
+\begin{proposition}
+    \label{prop: sheafification as a functor}
+    \cite[2.4 H]{vakilTheRisingSea}
+    Let $\mathscr{F},\mathscr{G} \in \mathrm{PSh}(X)$ be a presheaf of $X$, 
+    let $\mathscr{F}^{\mathrm{sh}},\mathscr{G}^{\mathrm{sh}}\in \mathrm{Sh}(X)$ be the sheafification 
+    of them. If there is a morphism $\varphi:\mathscr{F} \to \mathscr{G}$, 
+    then there exists a (unique) natural induced morphism of sheaves 
+    $\varphi^{\mathrm{sh}}: \mathscr{F}^{\mathrm{sh}} \to \mathscr{G}^{\mathrm{sh}}$, 
+    such that the following diagram commutes. 
+    \begin{center}
+        \begin{tikzcd}
+\mathscr{F} \arrow[r,"\varphi"] \arrow[d,"\mathrm{sh}"] & \mathscr{G} \arrow[d,"\mathrm{sh}"] \\
+\mathscr{F}^{\mathrm{sh}} \arrow[r,"\varphi^{\mathrm{sh}}"] & \mathscr{G}^{\mathrm{sh}} 
+\end{tikzcd}
+    \end{center}
+\end{proposition}
+
+\begin{proof}
+    This follows from the universal property of sheafification. 
+\end{proof}
+
+\begin{remark}
+    Indeed, \autoref{prop: sheafification as a functor} shows that the sheafification is a functor 
+    $ \sh : \PSh \to \Sh $. Moreover, it is left-adjoint to the inclusion functor $ \Sh \to \PSh $, 
+    i.e., for any presheaf $ \mathscr{F} $ and sheaf $ \mathscr{G} $, 
+    $$ \Hom_{\Sh}(\mathscr{F}^{\sh},\mathscr{G}) \cong \Hom_{\PSh}(\mathscr{F},\mathscr{G}). $$
+    % 如果有空写 skycraper sheaf 就把这里加上去一个纯泛性质的证明
+\end{remark}
+
+\begin{example}
+    Let $ A $ be an abelian group, and $ X $ be a topological space. 
+    We have defined the constant presheaf $ \underline{A}_{\operatorname{pre}} $ on $ X $, 
+    and the constant sheaf $ \underline{A} $ on $ X $ in \autoref{eg: constant sheaf}. 
+    We claim that $ \underline{A} $ is the sheafification of 
+    $ \underline{A}_{\operatorname{pre}} $. 
+    
+    
+    Indeed, the natural morphism $ \underline{A}_{\operatorname{pre}} \to \underline{A} $ 
+    is the identity on stalks: both stalks are $ A $, since a germ of a 
+    locally constant function is constant on a small neighborhood. 
+    Hence this morphism is an isomorphism on all stalks, and therefore 
+    the induced morphism $ \underline{A}_{\operatorname{pre}}^{\sh} \to \underline{A} $ 
+    is an isomorphism on stalks by \autoref{lemma: sheafification on stalks}. 
+    It follows that $ \underline{A} $ is the sheafification of 
+    $ \underline{A}_{\operatorname{pre}} $. 
+
+    One can check that each sheaves of abelian groups on $ X $ 
+    is a $ \underline{\mathbb{Z}} $-sheaves on $ X $ 
+    by definition. 
+    We will prove this by $ \mathscr{H}om $ in the next time. 
+\end{example}
+
+Now we can define the cokernel and image of a morphism of sheaves, 
+hence giving a complete description of the abelian category of sheaves. 
+
+\begin{definition}
+    Let $\varphi: \mathscr{F} \to \mathscr{G}$ be a morphism of sheaves. 
+    \begin{itemize}
+        \item We define the kernel of $\varphi$ to be the presheaf kernel of $\varphi$, 
+        $ \ker \varphi $. 
+        \item We define the cokernel of $\varphi$ to be the sheafification of the presheaf cokernel of $\varphi$, 
+    $\operatorname{coker}\,\varphi := (\operatorname{coker}_{\PSh}\,\varphi)^{\sh}.$
+        \item We define the image of $\varphi$ to be the sheafification of the presheaf image of $\varphi$, 
+    $\operatorname{im}\,\varphi := (\operatorname{im}_{\PSh}\,\varphi)^{\sh}.$ 
+    \end{itemize}
+\end{definition}
+
+\begin{corollary}
+    \cite[Ex 1.4]{hartsAG}
+    Let $\varphi: \mathscr{F} \to \mathscr{G}$ be an injective morphism of sheaves. 
+    Then the induced map $\varphi^{\sh} : \mathscr{F}^{\sh}\to \mathscr{G}^{\sh}$ 
+    of sheafifications is injective. 
+    Therefore, we can view $\im \varphi$ as a natural subsheaf 
+    of $\mathscr{G}$. 
+\end{corollary}
+
+\begin{proof}
+    We check this on the level of stalks. 
+    Notice that $ \varphi^{\sh}_{P} = \sh_{P} \circ \varphi_{P} \circ \sh_{P}^{-1} $ 
+    since $ \sh_{P} $ is an isomorphism, by \ref{lemma: sheafification on stalks}. 
+    Therefore, $ \varphi^{\sh}_{P} $ is injective for all $ P \in X $, 
+    since $ \varphi_{P} $ is injective for all $ P \in X $. 
+\end{proof}
+
+\section{Local Nature of Sheaves II}
+
+By giving the defintion of image in the category of sheaves, 
+we can now give an analogue of \autoref{prop: injective morphisms} for epimorphisms. 
+
+\begin{proposition}
+    \label{prop: surjective morphisms}
+    \cite[2.4 O]{vakilTheRisingSea}, \cite[Ex 1.3]{hartsAG} 
     Consider the morphism $\varphi:\mathscr{F} \to \mathscr{G}$ of sheaves 
     on the topology space $X$. 
     Then, the conditions below are equivalent: 
     \begin{enumerate}[label = (\arabic*)]
         \item $\varphi$ is an epimorphism. 
         \item $\varphi$ is surjective on the level of stalks: 
-        $\varphi_{P}:\mathscr{F}_{P}\to \mathscr{G}_{P}$ is an 
-        epimorphism, thus surjective and 
-        $\mathrm{im}\,\varphi_{P} = \mathscr{G}_{P}$, 
-        for all $P \in X$. 
+        $\varphi_{P}:\mathscr{F}_{P}\to \mathscr{G}_{P}$ is surjective for all $P \in X$. 
+    
+        \item $\operatorname{im}\,\varphi = \mathscr{G}$. 
         \item For every open set $ U \subseteq X $, 
         and for every section $ s \in \mathscr{G}(U) $, 
         there is a covering $ \{U_{i}\} $ of $ U $, 
         and sections $ t_{i} \in \mathscr{F}(U_{i}) $ 
-        such that $ \varphi(t_{i})=s\mid_{U_{i}} $ for all $ i $.   
+        such that $ \varphi(t_{i})=s\mid_{U_{i}} $ for all $ i $. 
     \end{enumerate}
+
+    We say that $\varphi$ is \emph{surjective} 
+    if it satisfies the above equivalent conditions.
 \end{proposition}
 
 \begin{proof}
-We prove \((1)\Rightarrow(2)\Rightarrow(3)\Rightarrow(1)\).
+We prove this by $ (2) \implies (1) \implies (3) \implies (4) \implies (2) $. 
+The proof of $ (2) \implies (1) $ and $ (1) \implies (3) $ is similiar to \autoref{prop: injective morphisms}. 
 
-\((1)\Rightarrow(2)\): Assume \(\varphi\) is an epimorphism. Let
-\(\operatorname{Im}\varphi\) be the image sheaf of \(\varphi\), so that
-\(\varphi\) factors as
-\[
-\mathscr F \xrightarrow{q} \operatorname{Im}\varphi
-\xrightarrow{i} \mathscr G,
-\]
-where \(i\) is a monomorphism. Since \(\varphi\) is an epimorphism, \(i\)
-is also an epimorphism: indeed, if \(\alpha\circ i=\beta\circ i\), then
-\(\alpha\circ\varphi=\beta\circ\varphi\), hence \(\alpha=\beta\). Thus
-\(i\) is both a monomorphism and an epimorphism, hence an isomorphism.
-Taking stalks gives
-\[
-\operatorname{im}\bigl(\varphi_P:\mathscr F_P\to\mathscr G_P\bigr)
-=(\operatorname{Im}\varphi)_P
-=\mathscr G_P,
-\]
-so \(\varphi_P\) is surjective for every \(P\in X\).
+$ (3) \implies (4): $ Let $ U $ be an open set, and $ s \in \mathscr{G}(U) $ be a section. 
+Since $ \operatorname{im}\,\varphi = \mathscr{G} $, for each $ P \in U $, 
+there exists an open neighborhood $ V_{P} \subseteq U $ of $ P $, and a section 
+$ t^{P} \in \mathscr{F}(V_{P}) $ such that $ \varphi(t^{P}) = s\mid_{V_{P}} $, 
+because of the construction of the sheafification. 
+Then $ \{V_{P}\}_{P \in U} $ is an open cover of $ U $, and the sections $ t^{P} $ satisfy 
+$ \varphi(t^{P}) = s\mid_{V_{P}} $ for all $ P \in U $. 
 
-\((2)\Rightarrow(3)\): Let \(U\subseteq X\) be open and \(s\in\mathscr G(U)\).
-For each \(P\in U\), the surjectivity of \(\varphi_P\) gives \(t_P\in
-\mathscr F_P\) with \(\varphi_P(t_P)=s_P\). Choose a representative
-\(t^P\in\mathscr F(V_P)\) of \(t_P\) on some open neighbourhood \(V_P\subseteq U\)
-of \(P\). Then \(\varphi(t^P)\) and \(s\) have the same stalk at \(P\), so
-there is an open neighbourhood \(W_P\subseteq V_P\) of \(P\) such that
-\[
-\varphi(t^P|_{W_P})=s|_{W_P}.
-\]
-The sets \(\{W_P\}_{P\in U}\) cover \(U\), and the sections
-\(t^P|_{W_P}\in\mathscr F(W_P)\) satisfy the required condition.
-
-\((3)\Rightarrow(1)\): Let \(\alpha,\beta:\mathscr G\to\mathscr H\) be morphisms
-of sheaves with \(\alpha\circ\varphi=\beta\circ\varphi\). For any open
-\(U\subseteq X\) and any \(s\in\mathscr G(U)\), condition (3) gives an open
-cover \(\{U_i\}\) of \(U\) and sections \(t_i\in\mathscr F(U_i)\) such that
-\(\varphi(t_i)=s|_{U_i}\). Then
-\[
-\alpha(s)|_{U_i}
-=\alpha(\varphi(t_i))
-=\beta(\varphi(t_i))
-=\beta(s)|_{U_i}.
-\]
-Since the \(U_i\) cover \(U\), we get \(\alpha(s)=\beta(s)\). Hence
-\(\alpha=\beta\), so \(\varphi\) is an epimorphism.
-
-Thus \((1)\Leftrightarrow(2)\Leftrightarrow(3)\).
+$ (4) \implies (2): $ For every point $ P \in X $, and every germ 
+$ \langle s, U \rangle \in \mathscr{G}_{P} $, there is a covering $ \{U_{i}\} $ of $ U $ and sections 
+$ t_{i} \in \mathscr{F}(U_{i}) $ such that $ \varphi(t_{i})=s \mid_{U_{i}} $, by assumption. 
+Choose an open neighborhood $ U_{i} $ of $ P $, then 
+$ \langle s,U \rangle = \langle s,U_{i} \rangle =  \langle \varphi(t_{i}),U_{i} \rangle $ 
+in $ \mathscr{G}_{P} $. This proves $ \varphi_{P} $ is surjective. 
 \end{proof}
 
-\begin{proposition}[1.1]
-    
+\begin{corollary}
+    \cite[Ex 1.2]{hartsAG} 
+    A sequence of sheaves 
+    $$ \cdots \to \mathscr{F}^{i-1} \xrightarrow{\varphi^{i-1}} \mathscr{F}^{i} \xrightarrow{\varphi^{i}}\mathscr{F}^{i+1} \to \cdots $$ 
+    is exact if and only if the induced sequence of stalks 
+    $$ \cdots \to \mathscr{F}^{i-1}_{P} \xrightarrow{\varphi^{i-1}_{P}} \mathscr{F}^{i}_{P} \xrightarrow{\varphi^{i}_{P}}\mathscr{F}^{i+1}_{P} \to \cdots $$ 
+    for all $ P \in X $.  
+\end{corollary}
+
+\begin{proposition}
+    \label{prop: isomorphism of sheaves}
+    \cite[Proposition 1.1]{hartsAG} 
+    Let Let $\varphi: \mathscr{F} \to \mathscr{G}$ be a morphism of sheaves on a topological space $X$. 
+    Then $\varphi$ is an isomorphism if and only if the 
+    induced map on the stalk $\varphi_{P}: \mathscr{F}_{P} \to \mathscr{G}_{P}$ is 
+    an isomorphism for every $P \in X$. 
 \end{proposition}
 
+\begin{proof}
+    By \autoref{prop: injective morphisms} and \autoref{prop: surjective morphisms}. 
+\end{proof}
 
+\begin{proposition}
+    \cite[Ex 1.2]{hartsAG} 
+    For any morphism of sheaves $\varphi:\mathscr{F} \to \mathscr{G}$, 
+    for each point $P \in X$, $(\mathrm{ker}\,\varphi)_{P}=\mathrm{ker}\,(\varphi_{P})$ 
+    and $(\mathrm{im}\,\varphi)_{P}=\mathrm{im}\,(\varphi_{P})$. 
+\end{proposition}
 
-\section{Sheafification}
+\begin{proof}
+    Left to readers. 
+\end{proof}
 
-
-
-\section{Historical Remark}
+% \section{Historical Remark} 有空回来写
 
 \printbibliography
 

@@ -1,0 +1,404 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{bookmark}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathrsfs}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{framed}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{tikz-cd}
+\usepackage{circuitikz}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage[center]{titlesec}
+% \usepackage{mypackage} % 你的常用符号包，按需启用
+\usepackage{fontawesome5}
+\usetikzlibrary{positioning}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usepackage[backend=biber,style=alphabetic,sorting=none]{biblatex}
+\addbibresource{reference.bib} % 按需启用
+
+\tcbuselibrary{theorems}
+\tcbuselibrary{breakable}
+
+% ---------- 颜色定义 ----------
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!10}
+\colorlet{LightGreen}{Green!10}
+\colorlet{Lightblue}{Blue!10}
+\colorlet{Lightpurple}{Purple!10}
+\colorlet{LightRed}{Red!10}
+\colorlet{LightYellow}{Yellow!10}
+\colorlet{LightCyan}{Cyan!10}
+\colorlet{LightAquamarine}{Aquamarine!10}
+\colorlet{LightCadetBlue}{CadetBlue!10}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+% ---------- 定理环境（英文） ----------
+\declaretheoremstyle[
+  name = Theorem,
+  postheadspace={\newline},
+]{thmsty}
+
+\declaretheorem[
+  style=thmsty,
+  numberwithin=section,
+  refname={Theorem},
+]{theorem}
+\tcolorboxenvironment{theorem}{
+  colback=LightGray,
+  breakable,
+  before upper app={\setlength{\parindent}{2em}}
+}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,sibling=theorem,refname={Definition}]{definition}
+\tcolorboxenvironment{definition}{colback=LightCyan,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Remark,]{thmsty}
+\declaretheorem[style=thmsty,sibling=theorem,refname={Remark}]{remark}
+\tcolorboxenvironment{remark}{colback=LightRed,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Lemma,]{thmsty}
+\declaretheorem[style=thmsty,sibling=theorem,refname={Lemma}]{lemma}
+\tcolorboxenvironment{lemma}{colback=Lightblue,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Corollary,]{thmsty}
+\declaretheorem[style=thmsty,sibling=theorem,refname={Corollary}]{corollary}
+\tcolorboxenvironment{corollary}{colback=Lightpurple,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,sibling=theorem,refname={Proposition}]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Example,]{prosty}
+\declaretheorem[style=prosty,sibling=theorem,refname={Example}]{example}
+\tcolorboxenvironment{example}{colback=LightGreen,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Exercise,]{prosty}
+\declaretheorem[style=prosty,numberwithin=section]{exercise}
+\tcolorboxenvironment{exercise}{colback=LightAquamarine,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Answer,]{prosty}
+\declaretheorem[style=prosty,numberwithin=section]{answer}
+\tcolorboxenvironment{answer}{colback=LightCadetBlue,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+% ---------- 罗马数字 ----------
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+% ---------- 标题格式 ----------
+% article 没有 \chapter，因此删除 \titleformat{\chapter}
+\titleformat{\section}{\raggedright\Large\bfseries}{\,\thesection\,}{1em}{}
+\titleformat{\subsection}{\raggedright\large\bfseries}{\,\thesubsection\,}{1em}{}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+
+% ------------------------------------------------------------------------------
+
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\PSh}{\mathsf{PSh}}
+\newcommand{\Sh}{\mathsf{Sh}}
+\newcommand{\sh}{\operatorname{sh}}
+\newcommand{\Hom}{\operatorname{Hom}}
+
+% ---------- 文档信息 ----------
+\title{\textbf{Seminar On Algebraic Geometry\\ Lecture Notes 2}}
+\title{%
+  \vspace*{-2cm}
+  \includegraphics[width=\textwidth]{SKy.png}\\[1.2cm]
+  \textbf{Seminar On Algebraic Geometry\\ Lecture Notes 2 (Incomplete version)}%
+}
+\author{Zihang Zhang}
+\date{October 19, 2026}
+
+\begin{document}
+
+
+\maketitle
+\thispagestyle{empty}
+
+\tableofcontents
+\newpage
+
+In this lecture, we will discuss sheaves of abelian groups (moreover, sheaves of modules) 
+by viewing $ \Sh $ as an abelian category. 
+
+\section{Abelian Category Of Sheaves}
+
+Let $ X $ be a topological space. 
+
+\begin{definition}
+  Let $\mathscr{F}'$ be a subsheaf of a sheaf $\mathscr{F}$, 
+  i.e. there is an injective morphism $ i:\mathscr{F}' \to \mathscr{F} $ 
+  (we can view $ \mathscr{F}'(U) $ as a subsheaf of $ \mathscr{F}(U) $ for each open subset $ U $). 
+  We define the quotient sheaf $\mathscr{F} / \mathscr{F}'$ to be the sheafification 
+  of the presheaf $U \mapsto \mathscr{F}(U) / \mathscr{F}'(U)$. 
+  For any $ P \in X $, we have $ (\mathscr{F} / \mathscr{F}')_{P} = \mathscr{F}_{P} / \mathscr{F}'_{P} $. 
+\end{definition}
+
+\begin{corollary}
+  Let $\varphi:\mathscr{F} \to \mathscr{G}$ be a morphism of sheaves. 
+  Then $\im\varphi \cong \mathscr{F} / \ker \varphi$, and 
+  $\mathrm{coker}\,\varphi \cong \mathscr{G} / \mathrm{im}\,\varphi$. 
+\end{corollary}
+
+\begin{proposition}[Direct sum]
+  
+\end{proposition}
+
+\begin{proposition}[Direct limit]
+  
+\end{proposition}
+
+\begin{proposition}[Inverse limit]
+  
+\end{proposition}
+
+
+
+\section{Operations on Sheaves}
+
+\subsection{Global Section Functor}
+
+Recall that we sometimes write $ \Gamma(U,\mathscr{F}):= \mathscr{F}(U)$, 
+for any open subset $ U \subseteq X $ and any sheaf $ \mathscr{F} $ on $ X $. 
+
+\begin{proposition}
+  \label{prop: left-exactness of Gamma}
+    \cite[Ex 1.8]{hartsAG} 
+    Suppose $U \subseteq X$ is an open subset, 
+    and $0 \to \mathscr{F} \to \mathscr{G} \to \mathscr{H}$ is an exact sequence 
+    of sheaves of abelian groups. 
+    Then $$0 \to \Gamma(U,\mathscr{F}) \to \Gamma(U,\mathscr{G}) \to \Gamma(U,\mathscr{H})$$
+    is exact. I.e., $ \Gamma(U,-) $  is a left exact functor $\mathrm{Sh}(X) \to \mathrm{Ab}$. 
+\end{proposition}
+
+\begin{proof}
+  We can easily check this on the level of stalks, 
+  since for any morphism $ \varphi: \mathscr{F} \to \mathscr{G} $ of sheaves, 
+  and for any $ P \in U $, we have $ \ker \varphi_{P} = (\ker \varphi)_{P} $ and 
+  $ \im \varphi_{P} = (\im \varphi)_{P} $.  
+\end{proof}
+
+However, $ \Gamma(U,-) $ is not exact in general, especially in algebraic geometry:
+a surjective morphism of sheaves need not induce a surjection on sections. 
+The following two examples illustrate that differential topology is ``soft,'' 
+whereas the Zariski topology is ``hard.'' 
+
+\begin{lemma}
+  \label{lemma: partition of units}
+  Let $ M $ be a smooth (paracompact) manifold and let $ \{U_{i}\}_{i \in I} $ be an open cover of $ M $. 
+  Then there exists a locally finite partition of unity subordinate to $ \{U_{i}\} $: 
+  a family $ \{\rho_{i}\}_{i \in I} $ of smooth functions $ \rho_{i} \in C^{\infty}(M) $ such that 
+  $ 0 \le \rho_{i} \le 1 $, $ \operatorname{supp}\rho_{i} \subseteq U_{i} $ is compact, 
+  the family $ \{\operatorname{supp}\rho_{i}\}_{i \in I} $ is locally finite, and 
+  $ \sum_{i \in I} \rho_{i} = 1 $ on $ M $ (the sum is locally finite, hence well defined).
+\end{lemma}
+
+\begin{example}
+  Let $ M $ be a smooth manifold, $ \mathscr{C}^{\infty}_{M} $ the sheaf of smooth functions on $ M $, 
+  and $ \mathscr{C}^{\infty}_{M,c} $ the presheaf of compactly supported smooth functions. 
+  The inclusion $ \mathscr{C}^{\infty}_{M,c} \hookrightarrow \mathscr{C}^{\infty}_{M} $ induces an isomorphism 
+  $$ (\mathscr{C}^{\infty}_{M,c})^{\sh} \xrightarrow{\sim} \mathscr{C}^{\infty}_{M} $$
+  on sheafification. Indeed, for each $ f \in C^{\infty}(M) $ and each point, choose a locally finite open cover 
+  $ \{U_{i}\}_{i \in I} $ of $ M $ by relatively compact open subsets and a partition of unity 
+  $ \{\rho_{i}\}_{i \in I} $ subordinate to it. Then each $ f_{i} := \rho_{i} f $ is compactly supported 
+  and only finitely many $ f_{i} $ are nonzero near each point, so $ f = \sum_{i} f_{i} $ 
+  with $ \sum_{i} f_{i} \in \Gamma(M,\mathscr{C}^{\infty}_{M,c}) $. 
+  Thus every smooth function is locally a sum of compactly supported smooth functions, 
+  and the sheafification of $ \mathscr{C}^{\infty}_{M,c} $ is $ \mathscr{C}^{\infty}_{M} $.
+\end{example}
+
+\begin{proposition}
+  Let $ M $ be a smooth manifold and $ \mathscr{O}_{M} := \mathscr{C}^{\infty}_{M} $ the sheaf of smooth functions. 
+  Then the global section functor 
+  $$ \Gamma(M,-) : \mathscr{O}_{M}\text{-}\mathsf{Mod} \longrightarrow \mathsf{Ab} $$
+  is exact.
+\end{proposition}
+
+\begin{proof}
+  Since $ \Gamma(M,-) $ is left exact, it suffices to show that every surjective morphism 
+  $ \varphi : \mathscr{F} \to \mathscr{G} $ of $ \mathscr{O}_{M} $-modules induces a surjection on global sections. 
+  Let $ g \in \Gamma(M,\mathscr{G}) $. As $ \varphi $ is an epimorphism of sheaves, there exist an open cover 
+  $ \{U_{i}\}_{i \in I} $ of $ M $ and local lifts $ f_{i} \in \mathscr{F}(U_{i}) $ with 
+  $ \varphi(f_{i}) = g|_{U_{i}} $. Choose a partition of unity $ \{\rho_{i}\}_{i \in I} $ subordinate to 
+  $ \{U_{i}\}_{i \in I} $. Since $ \mathscr{F} $ is an $ \mathscr{O}_{M} $-module, the section 
+  $ \rho_{i} f_{i} \in \mathscr{F}(U_{i}) $ vanishes near the boundary of $ U_{i} $, hence extends by zero 
+  to a global section $ \widetilde{\rho_{i} f_{i}} \in \Gamma(M,\mathscr{F}) $. 
+  By local finiteness the sum $ f := \sum_{i \in I} \widetilde{\rho_{i} f_{i}} $ is a well-defined global section of $ \mathscr{F} $, and
+  $$ \varphi(f) = \sum_{i \in I} \rho_{i}\,\varphi(f_{i}) = \sum_{i \in I} \rho_{i}\, g|_{U_{i}} = g . $$
+  Hence $ \varphi $ is surjective on global sections, and $ \Gamma(M,-) $ is exact.
+\end{proof}
+
+\begin{example}
+  \cite[Example 2.4.10]{vakilTheRisingSea}
+  Let $X=\mathbb{C}$ with the classical topology, 
+  and define $\mathscr{O}_{X}$ to be the sheaf of holomorphic functions, 
+  and $\mathscr{O}_{X}^{*}$ to be the sheaf of invertible holomorphic functions. 
+  Then we have an exact sequence 
+  $$0 \xrightarrow{\quad \quad} \underline{\mathbb{Z}} 
+  \xrightarrow{\quad \times 2 \pi i \quad} \mathscr{O}_{X} 
+  \xrightarrow{\quad \mathrm{exp} \quad} \mathscr{O}_{X}^{*} 
+  \xrightarrow{\quad  \quad}1,$$
+  where $\underline{\mathbb{Z}}$ is the constant sheaf associated to $\mathbb{Z}$. 
+
+  Indeed, we can check this on stalks. Without loss of generality, consider $ P=0 $/ 
+  Then $ \underline{\mathbb{Z}}_{0} = \mathbb{Z} $, 
+  and $ \mathscr{O}_{X,0} $ is the ring of convergent Taylor series at origin, 
+  and $ \mathscr{O}_{X,0}^{*} $ is the ring of functions in $  \mathscr{O}_{X,0} $ 
+  which doesn't vanish at $ 0 $. The image of $ \times 2 \pi i $ on stalks 
+  is $ 2 \pi i \mathbb{Z}$ as constant functions, and the kernel of $ \exp $ is just 
+  $ 2 \pi i \mathbb{Z} $ by Euler's equation. 
+  To show that the expotential map is surjective on stalks, we only need to notice that 
+  for any holomorphic function $ f \in \mathscr{O}_{X,0}^{*} $, 
+  there is an open neighborhood $ U $ of the origin such that $ f $ has no roots in $ U $. 
+  Thus, $ \ln f $ is a holomorphic function in $ U $, which gives the preimage of $ f $ 
+  in $ \mathscr{O}_{X,0} $. 
+
+  Let $ U = \mathbb{C} \setminus \{0\} $ be the punctured complex plane. 
+  Suppose that there is some $ f \in \mathscr{O}_{X}(U) $, such that 
+  $ \exp f = \id_{U} \in \mathscr{O}_{X}^{*}(U)$, i.e., $ \exp(f(z))=z $ on $ U $. 
+  Then $ f'(z)z = f'(z) e^{f(z)} = 1 $, for $ z \in U $, and we have $ f'(z) = 1/z $. 
+  Now we calculate the integral at 
+  $\gamma:|z|=1$: 
+  $$\oint_{\gamma} f'(z) \,\mathrm{d}z = \oint_{\gamma} \frac{1}{z} \,
+  \mathrm{d}z =2 \pi i  \neq 0.$$
+  However, by Cauchy's Integral Theorem, since $\gamma$ is a closed curve 
+  containing in $U$, a holomorphic open domain of $f'(z)$, 
+  the integral must be zero. 
+  Therefore, such $f$ does not exist, and $\exp(U)$ is not surjective. 
+\end{example}
+
+\subsection{Hom Sheaf}
+
+\begin{proposition}
+  Let $\mathscr{F},\mathscr{G}$ be sheaves of abelian groups on $X$. 
+  For any open set $U \subseteq X$, the set 
+  $\mathscr{H}{om}\,(\mathscr{F}\mid_{U},\mathscr{G}\mid_{U})$ 
+  is an abelian group, and $\mathscr{H}{om}(\mathscr{F},\mathscr{G})$ 
+  is a sheaf of abelian groups on $X$, 
+  by $U \mapsto \mathrm{Hom}\,(\mathscr{F}\mid_{U},\mathscr{G}\mid_{U})$. 
+  It is called the \emph{sheaf of local morphisms} 
+  of $\mathscr{F}$ into $\mathscr{G}$, 
+  "sheaf hom" for short, and is denoted $\mathrm{Hom}\,(\mathscr{F},\mathscr{G})$. 
+\end{proposition}
+
+\begin{proof}
+  For each open $U\subseteq X$, the set $\mathrm{Hom}(\mathscr{F}\mid_U,\mathscr{G}\mid_U)$ becomes an abelian group under pointwise addition: for morphisms $\varphi,\psi$ and any open $V\subseteq U$, $s\in\mathscr{F}(V)$, put
+  \[
+    (\varphi+\psi)(V)(s)=\varphi(V)(s)+\psi(V)(s),
+  \]
+  and define $(-\varphi)(V)(s)=-\varphi(V)(s)$, the zero morphism sending every section to $0$. The group axioms are inherited from the abelian groups $\mathscr{G}(V)$, so $U\mapsto\mathrm{Hom}(\mathscr{F}\mid_U,\mathscr{G}\mid_U)$ is a presheaf of abelian groups.
+
+  It remains to check the sheaf axioms. Let $U\subseteq X$ be open and $\{U_i\}_{i\in I}$ an open cover of $U$.
+  \emph{Identity:} if $\varphi\in\mathrm{Hom}(\mathscr{F}\mid_U,\mathscr{G}\mid_U)$ satisfies $\varphi|_{U_i}=0$ for all $i$, then for every open $V\subseteq U$ and $s\in\mathscr{F}(V)$ the sections $\varphi(V)(s)|_{V\cap U_i}=0$ for all $i$; since $\mathscr{G}$ is a sheaf and $\{V\cap U_i\}_{i\in I}$ covers $V$, we get $\varphi(V)(s)=0$, hence $\varphi=0$.
+  \emph{Gluing:} suppose $\varphi_i\in\mathrm{Hom}(\mathscr{F}\mid_{U_i},\mathscr{G}\mid_{U_i})$ satisfy $\varphi_i|_{U_i\cap U_j}=\varphi_j|_{U_i\cap U_j}$ for all $i,j$. For open $V\subseteq U$ and $s\in\mathscr{F}(V)$, the sections $\varphi_i(V\cap U_i)(s|_{V\cap U_i})\in\mathscr{G}(V\cap U_i)$ agree on the overlaps $V\cap U_i\cap U_j$; by the sheaf property of $\mathscr{G}$ they glue to a unique section $\varphi(V)(s)\in\mathscr{G}(V)$. The assignments $V\mapsto\varphi(V)$ define a morphism of sheaves $\mathscr{F}\mid_U\to\mathscr{G}\mid_U$, and $\varphi|_{U_i}=\varphi_i$ by construction. Hence the presheaf is a sheaf of abelian groups.
+\end{proof}
+
+\begin{proposition}
+  Suppose $\mathscr{F}$ is a sheaf of abelian groups on a topological space $X$. 
+  Then $\mathscr{H}{om}\,(\mathscr{F},\cdot)$ is a left-exact functor 
+  $\mathrm{Sh}(X) \to \mathrm{Sh}(X)$, a
+  nd $\mathscr{H}{om}\,(\cdot,\mathscr{F})$ is a left-exact contravariant 
+  functor $\mathrm{Sh}(X) \to \mathrm{Sh}(X)$, as we define above. 
+\end{proposition}
+
+\begin{proof}
+  Since the Hom sheaf is defined on sections by
+  $\mathscr{H}{om}(\mathscr{F},\mathscr{G})(U)=\mathrm{Hom}(\mathscr{F}\mid_U,\mathscr{G}\mid_U)$,
+  and exactness of a sequence of sheaves is checked on every open set (restriction to an open subset preserves exactness), it suffices to prove the corresponding exactness of $\mathrm{Hom}$ in $\mathrm{Sh}(U)$ for each open $U$.
+
+  Let $0\to\mathscr{G}'\xrightarrow{\alpha}\mathscr{G}\xrightarrow{\beta}\mathscr{G}''$ be exact. We show that
+  \[
+    0\to\mathrm{Hom}(\mathscr{F},\mathscr{G}')\xrightarrow{\alpha_*}\mathrm{Hom}(\mathscr{F},\mathscr{G})\xrightarrow{\beta_*}\mathrm{Hom}(\mathscr{F},\mathscr{G}'')
+  \]
+  is exact. If $\alpha\circ\varphi=0$, then $\varphi=0$ since $\alpha$ is injective; hence $\alpha_*$ is injective. As $\beta\circ\alpha=0$, we have $\beta_*\circ\alpha_*=0$. Conversely, if $\beta\circ\varphi=0$, then $\varphi$ factors through $\ker\beta=\operatorname{im}\alpha\cong\mathscr{G}'$ (using that $\alpha$ is injective), so $\varphi=\alpha\circ\psi$ for a unique $\psi\in\mathrm{Hom}(\mathscr{F},\mathscr{G}')$. Thus $\ker\beta_*=\operatorname{im}\alpha_*$, proving left-exactness of $\mathscr{H}{om}(\mathscr{F},\cdot)$.
+\end{proof}
+
+
+\section{Pushforward \& Inverse Image}
+
+\begin{definition}
+  Let $f: X \to Y$ be a continuous map of topological spaces.
+  \begin{itemize}
+    \item For any sheaf $ \mathscr{F} $ on $ X $, we define the \emph{direct image (pushforward)} 
+    sheaf $ f_{*}\mathscr{F} $ on $ Y $ by $$ f_{*}\mathscr{F}(V):=\mathscr{F}(f^{-1}V),$$ 
+    for any open set $ V \subseteq Y $. 
+    \item For any sheaf $ \mathscr{G} $ on $ Y $, we define a  
+    presheaf 
+    $ f^{-1}\mathscr{G} $ on $ X $ by $$ U \mapsto
+    \varinjlim_{V \supseteq f(U)} \mathscr{G}(V),$$ 
+    for any open set $ U \subseteq X $. And we define \emph{inverse image} 
+    sheaf $ f^{-1}\mathscr{G} $ to be the sheafification of the presheaf given above.  
+  \end{itemize}
+
+  Then $f_{*}:\mathrm{Sh}(X) \to \mathrm{Sh}(Y)$ and $f^{-1}:\mathrm{Sh}(Y) \to \mathrm{Sh}(X)$ 
+  are two functors between sheaves on different topological spaces. 
+\end{definition}
+
+\begin{proposition}
+  Let $f: X \to Y$ be a continuous map of topological space. 
+  Then $f^{-1}:\mathrm{Sh}(Y) \to \mathrm{Sh}(X)$ is left-adjoint 
+  to $f_{*}:\mathrm{Sh}(X)\to \mathrm{Sh}(Y)$. 
+  Precisely, there is a natural isomorphism 
+  $$\tau_{\mathscr{F}\mathscr{G}}:
+  \mathrm{Hom}_{X}\,(f^{-1}\mathscr{G},\mathscr{F})\to \mathrm{Hom}_{Y}
+  \,(\mathscr{G},f_{*}\mathscr{F})$$ 
+  for any sheaf $\mathscr{F}\in \mathrm{Sh}(X)$ and $\mathscr{G}\in \mathrm{Sh}(Y)$. 
+\end{proposition}
+
+\begin{definition}
+  If $Z$ is a subset of $X$, regarded as a topological subspace with the induced topology
+  , if $i: Z \to  X$ is the inclusion map, and if $\mathscr{F}$ is a sheaf on $X$, 
+  then we call $i^{-1}\mathscr{F}$ the \emph{restriction} of $\mathscr{F}$ to $Z$, 
+  and we often denote it by $\mathscr{F}\mid_{Z}$. 
+  If $ U $ is an open subset of $ X $, then $ \mathscr{F}\mid_{U} $ is 
+  naturally defined by $ \mathscr{F}\mid_{U}(V) = \mathscr{F}(V) $ for any open subset 
+  $ V \subseteq U $. 
+\end{definition}
+
+\begin{lemma}
+  Let $ Z $ be a subset of $ X $, $ \mathscr{F} $ be a sheaf on $ X $. 
+  Then $ (\mathscr{F}\mid_{Z})_{P} = \mathscr{F}_{P} $ for any point $ P \in Z $. 
+\end{lemma}
+
+\begin{example}[Skyscraper]
+  
+\end{example}
+
+\section{Sheaves Of Modules: An Introduction}
+
+
+
+\section{Base Sheaves}
+
+
+\section{Gluing Sheaves}
+
+\printbibliography
+
+
+\end{document}
