@@ -160,21 +160,22 @@ Let $ X $ be a topological space.
 \end{definition}
 
 \begin{corollary}
+  \cite[Exercise II.1.7]{hartsAG}
   Let $\varphi:\mathscr{F} \to \mathscr{G}$ be a morphism of sheaves. 
   Then $\im\varphi \cong \mathscr{F} / \ker \varphi$, and 
   $\mathrm{coker}\,\varphi \cong \mathscr{G} / \mathrm{im}\,\varphi$. 
 \end{corollary}
 
 \begin{proposition}[Direct sum]
-  
+  \cite[Exercise II.1.9]{hartsAG}
 \end{proposition}
 
 \begin{proposition}[Direct limit]
-  
+  \cite[Exercise II.1.10, 1.11]{hartsAG}
 \end{proposition}
 
 \begin{proposition}[Inverse limit]
-  
+  \cite[Exercise II.1.12]{hartsAG}
 \end{proposition}
 
 
@@ -295,6 +296,7 @@ whereas the Zariski topology is ``hard.''
 \subsection{Hom Sheaf}
 
 \begin{proposition}
+  \cite[Exercise II.1.15]{hartsAG}
   Let $\mathscr{F},\mathscr{G}$ be sheaves of abelian groups on $X$. 
   For any open set $U \subseteq X$, the set 
   $\mathscr{H}{om}\,(\mathscr{F}\mid_{U},\mathscr{G}\mid_{U})$ 
@@ -319,6 +321,7 @@ whereas the Zariski topology is ``hard.''
 \end{proof}
 
 \begin{proposition}
+  \cite[Exercise 2.6.I]{vakilTheRisingSea}
   Suppose $\mathscr{F}$ is a sheaf of abelian groups on a topological space $X$. 
   Then $\mathscr{H}{om}\,(\mathscr{F},\cdot)$ is a left-exact functor 
   $\mathrm{Sh}(X) \to \mathrm{Sh}(X)$, a
@@ -349,17 +352,58 @@ whereas the Zariski topology is ``hard.''
     for any open set $ V \subseteq Y $. 
     \item For any sheaf $ \mathscr{G} $ on $ Y $, we define a  
     presheaf 
-    $ f^{-1}\mathscr{G} $ on $ X $ by $$ U \mapsto
+    $ f^{+}\mathscr{G} $ on $ X $ by $$ f^{+}\mathscr{G}(U)=
     \varinjlim_{V \supseteq f(U)} \mathscr{G}(V),$$ 
     for any open set $ U \subseteq X $. And we define \emph{inverse image} 
-    sheaf $ f^{-1}\mathscr{G} $ to be the sheafification of the presheaf given above.  
+    sheaf $ f^{-1}\mathscr{G} $ to be the sheafification of $ f^{+}\mathscr{G} $ given above.  
   \end{itemize}
 
   Then $f_{*}:\mathrm{Sh}(X) \to \mathrm{Sh}(Y)$ and $f^{-1}:\mathrm{Sh}(Y) \to \mathrm{Sh}(X)$ 
   are two functors between sheaves on different topological spaces. 
 \end{definition}
 
+It's easy to verify that the pushforward $ f_{*}\mathscr{F} $ is still a sheaf, 
+since for any open subset $ V \subseteq Y $, $ f^{-1}V $ is an open subset of $ X $. 
+However, let $ U \subseteq X $ be an open subset, it's not in general $ f(V) $ is still open. 
+Therefore, we take an approximation by the larger open sets $ V \supseteq f(U) $. 
+More precisely, since the inclusion determines a reversed restriction map, 
+we define the inverse image to be the limit of such $ \mathscr{G}(V) $, 
+with arrows $ \mathscr{G}(V) \to f^{-1}\mathscr{G}(U) $. 
+
+If $ x \in X $ is a point, and $ i: \{x\} \hookrightarrow X $ is the inclusion map, 
+then the stalk can be viewed as $ \mathscr{F}_{x}= i^{-1}\mathscr{F} $ for every presheaf $ \mathscr{F} $ 
+on $ X $. 
+
+\begin{lemma}
+  \label{lemma: stalks of image}
+  \cite[Exercise 2.2.I, 2.7.C]{vakilTheRisingSea}
+  Suppose $ f:X \to Y $ is a continuous map, and $ \mathscr{F} $ is a sheaf on $ X $, 
+  $ \mathscr{G} $ is a sheaf on $ Y $. 
+  If $ f(p)=q $, then we have 
+  $$ (f_{*}\mathscr{F})_{q} \cong \mathscr{F}_{p},\,\,\text{and}\,\, 
+  \mathscr{G}_{q} \cong (f^{-1} \mathscr{G})_{p}.$$   
+\end{lemma}
+
+\begin{proof}
+  We prove this statement by the definition of colimit. 
+  On the one hand, for each open neighborhood $ U $ of $ q $, $ f^{-1}U $ is an open neighborhood 
+  of $ p $, thus there is a morphism 
+  $ \mathscr{F}_{p} \to  \varinjlim_{q \in U}\mathscr{F}(f^{-1}U) = (f_{*}\mathscr{F})_{q} $; 
+  on the other hand, for each open neighborhood $ V $ of $ p $, $ V \subseteq f^{-1}f(V) $ 
+  and $ q \in f(V) $, which shows that $ \mathscr{F}_{p} \cong (f_{*}\mathscr{F})_{q} $, 
+  since the limit is given by the inclusions of open subsets. 
+  
+  The analogue of inverse image is given by the equation 
+  $$ (f^{-1}\mathscr{G})_{p} = (f^{+}\mathscr{G})_{p} =  \varinjlim_{p \in U} 
+  \varinjlim_{f(U) \subseteq V}\mathscr{G}(V)
+  = \varinjlim_{q \in V}\mathscr{G}(V), $$ 
+  where the last equation is because for each open neighborhood $ V $ of $ q $, 
+  $q \in f^{-1}(V) $ and $ ff^{-1}(V) \subseteq V $.  
+\end{proof}
+
 \begin{proposition}
+  \label{prop: image adjoint}
+  \cite[Exercise II.1.18]{hartsAG}
   Let $f: X \to Y$ be a continuous map of topological space. 
   Then $f^{-1}:\mathrm{Sh}(Y) \to \mathrm{Sh}(X)$ is left-adjoint 
   to $f_{*}:\mathrm{Sh}(X)\to \mathrm{Sh}(Y)$. 
@@ -369,6 +413,20 @@ whereas the Zariski topology is ``hard.''
   \,(\mathscr{G},f_{*}\mathscr{F})$$ 
   for any sheaf $\mathscr{F}\in \mathrm{Sh}(X)$ and $\mathscr{G}\in \mathrm{Sh}(Y)$. 
 \end{proposition}
+
+\begin{proof}
+  We prove the adjointness by giving the unit and counit. 
+  Notice that for open subset $ V \subseteq Y $, there is a natural morphism 
+  $$\eta_{\mathscr{G}}(V): \mathscr{G}(V) \to f_{*}f^{+}\mathscr{G}(V)=\varinjlim_{V' \supseteq f(f^{-1}V)} \mathscr{G}(V')
+  = \varinjlim_{V' \supseteq V \cap f(X)} \mathscr{G}(V'), $$
+  since $ V \supseteq V \cap f(X)$. On the other side, for open subset $ U \subseteq X $, there is also a natural morphism 
+  $$ \varepsilon_{\mathscr{F}}(U): f^{+}f_{*}\mathscr{F}(U)=
+  \varinjlim_{U' \supseteq f(U)}\mathscr{F}(f^{-1}U') \to \mathscr{F}(U), $$
+  since $ U $ is contained in each $ f^{-1}U' $.  
+\end{proof}
+
+
+
 
 \begin{definition}
   If $Z$ is a subset of $X$, regarded as a topological subspace with the induced topology
@@ -380,23 +438,291 @@ whereas the Zariski topology is ``hard.''
   $ V \subseteq U $. 
 \end{definition}
 
-\begin{lemma}
+\begin{corollary}
   Let $ Z $ be a subset of $ X $, $ \mathscr{F} $ be a sheaf on $ X $. 
   Then $ (\mathscr{F}\mid_{Z})_{P} = \mathscr{F}_{P} $ for any point $ P \in Z $. 
-\end{lemma}
+\end{corollary}
 
 \begin{example}[Skyscraper]
+  \cite[Exercise II.1.17]{hartsAG}
   
+\end{example}
+
+
+\section{Locally Ringes Spaces}
+
+\begin{lemma}
+  \label{lemma: local homomorphism}
+  Let $ (A, \mathfrak{m}_{A}) $ and $ (B,\mathfrak{m}_{B}) $ be two local rings, 
+  and $ \varphi : A \to B $ be a homomorphism, then the following statements are equivalent: 
+  \begin{enumerate}[label = (\alph*)]
+    \item $ f^{-1}(\mathfrak{m}_{B}) = \mathfrak{m}_{A} $, 
+    \item $ f(\mathfrak{m}_{A}) \subseteq \mathfrak{m}_{B} $.  
+  \end{enumerate} 
+  If $ f $ satifies the equivalent condition above, we say that $ f $ is a \textbf{local homomorphism}. 
+\end{lemma}
+
+\begin{proof}
+  (a) $ \implies $ (b) is because 
+  $f(\mathfrak{m}_{A})= ff^{-1}(\mathfrak{m}_{B})= \mathfrak{m}_{B} \cap f(A) \subseteq \mathfrak{m}_{B} $. 
+  Suppose $ f(\mathfrak{m}_{A}) \subseteq \mathfrak{m}_{B} $, 
+  then $ \mathfrak{m}_{A} \subseteq f^{-1} f \mathfrak{m}_{A} \subseteq f^{-1}(\mathfrak{m}_{B}) $. 
+  Since $ \mathfrak{m}_{A} $ is maximal, and $ f^{-1}(\mathfrak{m}_{B}) $ is a prime ideal, 
+  we have $ f^{-1}(\mathfrak{m}_{B}) = \mathfrak{m}_{A} $, this proves (b) $ \implies $ (a).  
+\end{proof}
+
+
+
+\begin{definition}
+  A \textbf{ringed space} is a pair $ (X,\mathscr{O}_{X}) $ 
+  consisting of a topological space $ X $ and a sheaf of rings 
+  $ \mathscr{O}_{X} $ on $ X $. 
+
+  A \textbf{morphism of ringed spaces} from $ (X,\mathscr{O}_{X}) $ to $ (Y,\mathscr{O}_{Y}) $ 
+  is a pair $ (f,f^{\sharp}) $ of a continuous map $ f: X \to Y $ and a morphism of sheaves 
+  $ \mathscr{O}_{Y} \to f_{*}\mathscr{O}_{X} $ on $ Y $. 
+
+  We say the ringed space $ (X,\mathscr{O}_{X}) $ is a \textbf{locally ringed space}, 
+  if for each point $ P \in X $, the stalk $ \mathscr{O}_{X,P} $ is a local ring, 
+  with a unique maximal ideal $ \mathfrak{m}_{X,P} $. 
+
+  A \textbf{morphism of locally ringed spaces} is a morphism $ (f,f^{\sharp}) $ of ringed spaces, 
+  such that for each point $ P \in X $, the induced natural map 
+  $$f_{P}^{\sharp}: \mathscr{O}_{Y,f(P)} = \varinjlim_{f(P) \in V} \mathscr{O}_{Y}(V) \to 
+  \varinjlim_{f(P) \in V} \mathscr{O}_{X}(f^{-1}V) \to \mathscr{O}_{X,P} $$
+  is a local homomorphism. 
+\end{definition}
+
+Notice that, by \autoref{lemma: stalks of image}, the induced map on stalks 
+is given by 
+$$ f_{P}^{\sharp}: \mathscr{O}_{Y,f(P)} \to (f_{*}\mathscr{O}_{X})_{f(P)}\cong \mathscr{O}_{X,P}. $$
+Next lemma show the equivalent definition of the local induced map. 
+
+Here is a geometric view, to view a section $ f \in \mathscr{O}_{X}(U) $ as a function. 
+It takes values at $ P \in X $ by $ g(P):=g_{P} + \mathfrak{m}_{P} \in \mathscr{O}_{X,P}/\mathfrak{m}_{X,P} $. 
+So we can restate the condition of local homomorphism by the following lemma. 
+
+\begin{lemma}
+  \label{lemma: induced local homomorphism}
+  \cite{EisenbudHarris}
+  Let $ (f,f^{\sharp}): X \to Y $ be a morphism of ringed spaces, where $ X $ and $ Y $ are locally ringed 
+  spaces. Then the following statements are equivalent: 
+  \begin{enumerate}[label = (\alph*)]
+    \item $ f $ is a morphism of locally ringed spaces, i.e., the induced map 
+  $ f_{P}^{\sharp} : \mathscr{O}_{Y,f(P)} \to \mathscr{O}_{X,P} $ is a local homomorphism for any $ P \in X $.  
+    \item For any point $ P \in X $ and any open neighborhood $ V $ of $ f(P) $ in $ Y $, a section 
+    $ s \in \mathscr{O}_{Y}(V) $ vanishes at $ f(P) $, i.e., $ s_{f(P)} \in \mathfrak{m}_{Y,f(P)} $ 
+    if and only if the section 
+    $ f^{\sharp}(s) \in f_{*}\mathscr{O}_{X}(V)=\mathscr{O}_{X}(f^{-1}V) $ vanishes at $ P $, 
+    i.e., $ f^{\sharp}(s)_{P} \in \mathfrak{m}_{X,P}$.  
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  (a) $ \implies $ (b): 
+  Let $ s \in \mathscr{O}_{Y}(V) $ be a section. Suppose that  
+  $ s_{f(P)} \in \mathfrak{m}_{Y,f(P)} $. 
+  Then $ (f^{\sharp}(s))_{P} = f^{\sharp}_{P}(s_{f(P)}) \subseteq \mathfrak{m}_{X,P} $, 
+  by \autoref{lemma: local homomorphism}. 
+  Conversely, suppose that $ f^{\sharp}(s)_{P} \in \mathfrak{m}_{X,P} $. 
+  Then $ s_{f(P)} \in f^{\sharp,-1}_{P}(f^{\sharp}(s)_{P}) = \mathfrak{m}_{Y,f(P)} $. 
+
+  (b) $ \implies  $ (a): 
+  Now consider a germ $ \langle s,V \rangle $, where $ s \in \mathscr{O}_{Y}(V) $ 
+  and $ V $ is an open neighborhood of $ f(P) $. 
+  Suppose that $ \langle s,V \rangle \in \mathfrak{m}_{Y,f(P)} $. 
+  Then $ f^{\sharp}(s)_{P}= f^{\sharp}_{P}(\langle s,V \rangle)=\langle f^{\sharp}(s),f^{-1}V \rangle = f^{\sharp}(s)_{P} \in \mathfrak{m}_{X,P}$. 
+  This proves that $ f^{\sharp}_{P}(\mathfrak{m}_{Y,f(P)}) \subseteq \mathfrak{m}_{X,P} $, 
+  thus $ f^{\sharp} $ is a local homomorphism. 
+\end{proof}
+
+\begin{example}
+  Let $ (X,\mathscr{C}_{X}) $ be a ringed space, 
+  where $ X $ is a topological space and $ \mathscr{C}_{X} $ 
+  denotes the sheaf of continuous maps from $ X $ to $ \mathbb{R} $ 
+  (or $ \mathbb{C} $). 
+  Let $ f: X \to Y $ be a continuous map, then there is a pullback  
+  $$f^{\sharp}: \mathscr{C}_{Y}(U) \to f_{*}\mathscr{C}_{X}(U) = 
+  \mathscr{C}_{X}(f^{-1}U), \quad g \mapsto g \circ f$$ 
+  for any open subset $ U \subseteq Y $, 
+  which gives the morphism of sheaves 
+  $ f^{\sharp} :\mathscr{C}_{Y} \to  f_{*}\mathscr{C}_{X} $. 
+
+  Now consider the stalks. Since there continuous function 
+  $ g: X \to \mathbb{R} $ can be defined locally, 
+  $ \mathscr{C}_{X,P} $ is simply a $ \mathbb{R} $-algebra 
+  of functions continuous at $ P \in X $. 
+  $ \mathscr{C}_{X,P} $ is a local ring, with a unique maximal 
+  ideal $ \mathfrak{m}_{X,P}=\{h \in \mathscr{C}_{X,P}: h(P) \neq 0\} $ 
+  (because if $ f $ does not vanish at $ P $, then there is an 
+  open neighborhood of $ P $ such that $ f $ does not vanish on it), 
+  which is the kernel of the value map 
+  $ \mathfrak{m}_{X,P} \to \mathbb{R} $ given by $ h \mapsto h(P) $. 
+  If $ g \in \mathscr{C}_{Y,f(P)} $ is a continuous 
+  function at $ f(P) $, we have 
+  $ f^{\sharp}(g)(f(P)) = g \circ f(P) =0 $ if and only if 
+  $ g(f(P))=0 $. Therefore, $ f^{\sharp}_{P} $ is a local homomorphism, 
+  by \ref{lemma: induced local homomorphism}. 
+\end{example}
+
+\begin{example}
+  Let $ (M,\mathscr{C}^{\infty}_{M}) $ be a ringed space, 
+  where $ M $ is a smooth manifold (as a topological manifold), 
+  $ \mathscr{C}^{\infty}_{M} $ is the ring of smooth functions 
+  on $ M $. Let $ (N,\mathscr{C}^{\infty}_{N}) $ be another 
+  ringed space of smooth manifold, $ f: M \to N $ a continuous map. 
+  Then we can also define the pullback map 
+  $ f^{\sharp}: \mathscr{C}^{\infty}_{N} \to f_{*}\mathscr{C}_{M} $. 
+
+  Indeed, \cite[Proposition 4.18]{WedhornManifolds} shows that: 
+  $ f: M \to N $ is a smooth map, if and only if 
+  the pullback map $ f^{\sharp} $ factors through $ f_{*}\mathscr{C}_{M}^{\infty} $, 
+  i.e., the pullback of each smooth function on $ N $ is a smooth function on $ M $. 
+  (In \cite{WedhornManifolds}, the author provides a view to construct a differential 
+  manifold totally as a ringed space.) Therefore, 
+  $ f^{\sharp}: \mathscr{C}^{\infty}_{N} \to f_{*}\mathscr{C}_{M}^{\infty} $ is well-defined, 
+  and the induced map $ f^{\sharp}_{P}:\mathscr{C}_{Y,f(P)} \to  f_{*}\mathscr{C}_{X,P}  $ 
+  is a local homomorphism by viewing the similar arguments with the continuous version above. 
+
+  Similarly, complex manifold is also a locally ringed space. 
+\end{example}
+
+Indeed, the equivalent definition of manifolds motivate the definition of morphisms between algebraic 
+varieties: a continuous map $ f:X \to Y $  between varieties is a morphism if it pull back a regular function on 
+a $ V \subseteq Y$ to a regular function on $ f^{-1}(V) \subseteq X $. 
+
+\begin{example}
+  Let $ (X, \mathscr{O}_{X}) $ be a variety, with the regular function sheaf as the structure sheaf. 
+  By \cite[Theorem 3.2, 3.4]{hartsAG}, the stalks $ \mathscr{O}_{X,P} $ is a local ring 
+  (localization of the coordinate ring at the maximal ideal corresponding to $ P $). 
+  The morphism $ f: X \to Y $ of varieties is a continuous map such that 
+  $ f^{*} : \mathscr{O}_{Y} \to f_{*}\mathscr{O}_{X} $ is well-defined by sending a regular function 
+  $ s \in \mathscr{O}_{Y}(V) $ to the pullback $ s \circ f \in \mathscr{O}_{X}(f^{-1}V) $. 
+
+  Moreover, since for each maximal ideal $ \mathfrak{m}_{X,P} $ in the local ring $ \mathscr{O}_{X,P} $, 
+  we have $  \mathscr{O}_{X,P} / \mathfrak{m}_{X,P} \cong k $ via the valuation map $ f \mapsto f(P) $. 
+  It's easy to verify that the induced map $ f^{\sharp}_{P}: \mathscr{O}_{Y,f(P)} \to \mathscr{O}_{X,P} $ 
+  is a local homomorphism. 
 \end{example}
 
 \section{Sheaves Of Modules: An Introduction}
 
 
 
+
 \section{Base Sheaves}
 
+This section is based on \cite[Proposition I-12]{EisenbudHarris}, 
+\cite[2.5 Recovering sheaves from a ``sheaf on a base'']{vakilTheRisingSea} 
+and \cite[6.30 Bases and sheaves]{stacks}. 
 
-\section{Gluing Sheaves}
+\begin{definition}
+  Let $ X $ be a topological space. Let $ \mathcal{B} $ be a basis for $ X $. 
+  We say that a collection of groups $\mathscr{F}(U)$ for open sets 
+  $U \in \mathcal{B}$ and maps 
+  $\mathrm{res}_{V, U} : \mathscr{F}(V ) \to  \mathscr{F}(U )$ 
+  for $V \subseteq  U$ form a $\mathcal{B}$-\emph{sheaf} if they 
+  satisfy the sheaf axiom with respect to inclusions 
+  of basic open sets in basic open sets and 
+  coverings of basic open sets by basic open sets: 
+  \begin{itemize}
+    \item \textbf{Presheaf axiom:} $\mathscr{F}$ is a contravarient 
+    functor from the category of $\mathcal{B}$ with morphisms of inclusions, 
+    to the category of $\mathrm{Ab}$. 
+    \item \textbf{Sheaf axiom:} For any $U \in \mathcal{B}$ and an 
+    open cover $\{U_{i}\}_{i \in I} \subseteq \mathcal{B}$ of $U$, 
+    if there is a collection of sections 
+    $s_{i} \in \mathscr{F}(U_{i})$, 
+    such that for any covers $U_{i}$ and $U_{j}$, 
+    and any basic open sets $V \in \mathcal{B}$ such that 
+    $V \subseteq U_{i} \cap U_{j}$, $s_{i}\mid_{V}=s_{j}\mid_{V}$, 
+    then there is a unique section $s \in \mathscr{F}(U)$, 
+    such that $s \mid_{U_{i}}=s_{i}$.   
+  \end{itemize}
+  A morphism $\varphi:\mathscr{F} \to \mathscr{G}$ of $\mathcal{B}$-sheaves 
+  is a set of morphisms $\varphi(U):\mathscr{F}(U) \to \mathscr{G}(U)$, 
+  for any $U \in \mathcal{B}$, such that $\varphi(s\mid_{V})=\varphi(s)\mid_{V}$, 
+  if $V \subseteq U$ and $s \in \mathscr{F}(U)$. 
+\end{definition}
+
+\begin{lemma}
+  Let $\mathcal{B}$ be a base of open sets for $X$, 
+  $\mathscr{F}$ be a $ \mathcal{B} $-sheaf. 
+  For any open set $U \subseteq X$, define $\mathscr{F}(U)$ as the 
+  inverse limit of the sets $\mathscr{F}'(V)$, where $V$ runs over 
+  basic open sets contained in $U$: 
+  $$\mathscr{F}'(U)= \varprojlim_{V \subseteq U, V \in \mathcal{B}} \mathscr{F}(V).$$
+  Then 
+  \begin{itemize}
+    \item $\mathscr{F}'(U)$ is the set of families 
+    $(f_{V})_{V \subseteq U,V \in \mathcal{B}} \in \prod_{V \subseteq U,V \in \mathcal{B}}\mathscr{F}(V)$ 
+    such that $f_{V} \mid_{W}=f_{W}$, 
+    whenever $W \subseteq V \subseteq U$ with $W,V \in \mathcal{B}$. 
+    \item $\mathscr{F}'(V)=\mathscr{F}(V)$ for all $V \in \mathcal{B}$. 
+    \item $\mathscr{F}'$ is a sheaf on $X$. 
+  \end{itemize}
+\end{lemma}
+
+\begin{proposition}
+  \cite[Proposition I-12]{EisenbudHarris} 
+  Let $\mathcal{B}$ be a base of open sets for $X$. 
+  \begin{enumerate}[label=(\arabic*)]
+    \item Every $\mathcal{B}$-sheaf $ \mathscr{F} $ on $X$ extends uniquely to a sheaf on $X$, 
+     denoted by $ \mathscr{F}^{\operatorname{ext}} \in \mathsf{Sh}(X)$. 
+
+    \item Every morphism of $\mathcal{B}$-sheaves 
+    $\overline{\varphi}:\mathscr{F} \to \mathscr{G}$ extends uniquely to a morphism 
+    $\varphi:\mathscr{F}^{\operatorname{ext}} \to \mathscr{G}^{\operatorname{ext}}$ of sheaves on $ X $, 
+    such that $\varphi(U)=\overline{\varphi}(U)$, for all $U \in \mathcal{B}$. 
+  \end{enumerate}
+  The extension above forms a functor $\mathrm{ext}:\mathrm{Sh}(\mathcal{B}) \to \mathrm{Sh}(X)$, 
+  from the category of $\mathcal{B}$-sheaf to the category of sheaves on $X$. 
+\end{proposition}
+
+\section{Gluing Sheaves And Locally Ringed Spaces}
+
+\begin{proposition}
+  \cite[Exercise II.1.22]{hartsAG} 
+  Let $ X $ be a topological space, let $ \mathcal{U} = \{U_{i}\} $ be 
+  an open cover of $ X $, and suppose we are given for each $ i $ a sheaf $ \mathscr{F}_{i} $ 
+  on $ U_{i} $, and for each $ i,j $, an isomorphism 
+  $ \varphi_{ij}: \mathscr{F}_{i} \mid_{U_{i} \cap U_{j}} \to \mathscr{F}_{j}\mid_{U_{i} \cap U_{j}}$, 
+  such that 
+  \begin{enumerate}[label=(\arabic*)]
+    \item for each $ i $, $ \varphi_{ii} = \id $, and
+    \item for each $ i,j,k $, $ \varphi_{ik} = \varphi_{jk} \circ \varphi_{ij} $ on $U_{i} \cap U_{j} \cap U_{k} $.  
+  \end{enumerate}
+  Then there exists a unique sheaf $ \mathscr{F} $ on $ X $, together with 
+  isomorphisms $ \psi_{i} :\mathscr{F}\mid_{U_{i}} \to \mathscr{F}_{i} $ such that for 
+  each $ i,j $, $ \psi_{j} = \varphi_{ij} \circ \psi_{i} $ on $ U_{i} \cap U_{j}$. 
+  We say that $ \mathscr{F} $ is obtained by \emph{glueing} the sheaves $ \mathscr{F}_{i} $ 
+  via the isomorphisms $ \varphi_{ij} $. 
+\end{proposition}
+
+\begin{proposition}
+  \cite[Exercise II.2.12]{hartsAG} and \cite[Lemma 26.14.1]{stacks} 
+  Let $ \{X_{i}\} $ be a family of locally ringed spaces. For each $ i \neq j $, 
+  suppose given an open subspace $ U_{ij} \subseteq X_{i} $. 
+  Suppose also given for each $ i \neq j $ an isomorphism of locally ringed spaces 
+  $ \varphi_{ij} : U_{ij} \to U_{ji} $ satisfying the cocycle condition: 
+  \begin{enumerate}[label=(\arabic*)]
+    \item for each $ i $, $ \varphi_{ij} = \varphi_{ji}^{-1} $, and
+    \item for each $ i,j,k $, $ \varphi_{ij}(U_{ij} \cap U_{ik}) = U_{ji} \cap U_{jk} $, 
+    and $ \varphi_{ik} = \varphi_{jk} \circ \varphi_{ij} $ on $ U_{ij} \cap U_{ik} $. 
+  \end{enumerate}
+  Then there is a locally ringed space $ X $, together with morphisms 
+  $ \psi_{i} : X_{i} \to X $, such that 
+  \begin{enumerate}[label=(\arabic*)]
+    \item $ \psi_{i} $ is an isomorphism of $ X_{i} $ onto an open subspace of $ X $, 
+    \item the $ \psi_{i}(X_{i}) $ cover $ X $, 
+    \item $ \psi_{i}(U_{ij}) = \psi_{i}(X_{i}) \cap \psi_{j}(X_{j}) $ and 
+    \item $ \psi_{i} = \psi_{j} \circ \varphi_{ij} $ on $ U_{ij} $. 
+  \end{enumerate}
+  We say that $ X $ is obtained by \emph{glueing} the locally ringed space $ X_{i} $ 
+  along the isomorphisms $ \varphi_{ij} $. 
+
+  Moreover, if each $ X_{i} $ is a scheme, then $ X $ is a scheme. 
+\end{proposition}
 
 \printbibliography
 

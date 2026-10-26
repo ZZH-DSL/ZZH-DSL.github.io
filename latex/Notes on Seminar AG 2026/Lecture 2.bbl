@@ -63,14 +63,113 @@
       \strng{authornamehash}{fd27b54a95453be8ed6a0951d5bc5075}
       \strng{authorfullhash}{fd27b54a95453be8ed6a0951d5bc5075}
       \field{labelalpha}{Va}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{isbn}{978-0691268682}
       \field{shorthand}{Va}
       \field{title}{The Rising Sea: Foundations of Algebraic Geometry}
       \field{year}{2025}
+    \endentry
+    \entry{EisenbudHarris}{book}{}
+      \name{author}{2}{}{%
+        {{hash=1249d4c8877c098355d267da038c837b}{%
+           family={Eisenbud},
+           familyi={E\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=38017df6aee91d3bb1c985bade8eb930}{%
+           family={Harris},
+           familyi={H\bibinitperiod},
+           given={Joe},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag, New York}%
+      }
+      \strng{namehash}{cec8e15f0d7661d65b0f1d74b9c15199}
+      \strng{fullhash}{cec8e15f0d7661d65b0f1d74b9c15199}
+      \strng{bibnamehash}{cec8e15f0d7661d65b0f1d74b9c15199}
+      \strng{authorbibnamehash}{cec8e15f0d7661d65b0f1d74b9c15199}
+      \strng{authornamehash}{cec8e15f0d7661d65b0f1d74b9c15199}
+      \strng{authorfullhash}{cec8e15f0d7661d65b0f1d74b9c15199}
+      \field{labelalpha}{E\&H}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0-387-98638-3; 0-387-98637-5}
+      \field{series}{Graduate Texts in Mathematics}
+      \field{shorthand}{E\&H}
+      \field{title}{The geometry of schemes}
+      \field{volume}{197}
+      \field{year}{2000}
+      \field{pages}{x+294}
+      \range{pages}{-1}
+    \endentry
+    \entry{WedhornManifolds}{book}{}
+      \name{author}{1}{}{%
+        {{hash=19a9170cb8e6a605aacaaf60dcce3a64}{%
+           family={Wedhorn},
+           familyi={W\bibinitperiod},
+           given={Torsten},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Spektrum, Wiesbaden}%
+      }
+      \strng{namehash}{19a9170cb8e6a605aacaaf60dcce3a64}
+      \strng{fullhash}{19a9170cb8e6a605aacaaf60dcce3a64}
+      \strng{bibnamehash}{19a9170cb8e6a605aacaaf60dcce3a64}
+      \strng{authorbibnamehash}{19a9170cb8e6a605aacaaf60dcce3a64}
+      \strng{authornamehash}{19a9170cb8e6a605aacaaf60dcce3a64}
+      \strng{authorfullhash}{19a9170cb8e6a605aacaaf60dcce3a64}
+      \field{labelalpha}{Wed}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-658-10632-4; 978-3-658-10633-1}
+      \field{series}{Springer Studium Mathematik---Master}
+      \field{shorthand}{Wed}
+      \field{title}{Manifolds, sheaves, and cohomology}
+      \field{year}{2016}
+      \field{pages}{xvi+354}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1007/978-3-658-10633-1
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-658-10633-1
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-658-10633-1
+      \endverb
+    \endentry
+    \entry{stacks}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=a3dbcb9991f2a884f2c608ad2335af9f}{%
+           family={{Stacks project authors}},
+           familyi={S\bibinitperiod},
+           given={The},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{a3dbcb9991f2a884f2c608ad2335af9f}
+      \strng{fullhash}{a3dbcb9991f2a884f2c608ad2335af9f}
+      \strng{bibnamehash}{a3dbcb9991f2a884f2c608ad2335af9f}
+      \strng{authorbibnamehash}{a3dbcb9991f2a884f2c608ad2335af9f}
+      \strng{authornamehash}{a3dbcb9991f2a884f2c608ad2335af9f}
+      \strng{authorfullhash}{a3dbcb9991f2a884f2c608ad2335af9f}
+      \field{labelalpha}{Sta}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://stacks.math.columbia.edu}}
+      \field{shorthand}{Sta}
+      \field{title}{The Stacks project}
+      \field{year}{2026}
     \endentry
   \enddatalist
 \endrefsection
