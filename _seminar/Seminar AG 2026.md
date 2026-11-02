@@ -47,23 +47,25 @@ and so on.
 
 ## Tentative Schedule
 
-| Time | Topics | Hartshorne | Speaker |
-|---|--------|------------|---------|
-| 2026/10/12 | Sheaves, stalks, local nature of sheaves [Notes 1](/latex/Notes%20on%20Seminar%20AG%202026/Lecture%201.pdf) | II.1 | 章梓杭 |
-| 2026/10/19 | Sheafification, $\mathsf{Sh}$, global section functor [Notes 2](/latex/Notes%20on%20Seminar%20AG%202026/Lecture%202.pdf)| II.1 | 章梓杭 |
-| 3 | Base sheaf, gluing sheaves, affine schemes | II.2 | 章梓杭 |
-| 4 | $\operatorname{Proj} S$, functor from $\mathsf{Var}_{k}$ to $\mathsf{Sch}_{k}$, functor of points | II.2 |  |
-| 5 | Reduced, integral, noetherian, finite type, immersion | II.3 |  |
-| 6 | Algebraic scheme, dimension, fibred product | II.3 |  |
-| 7 | Separated and proper morphism, valuative criterion | II.4 |  |
-| 8 | Projective morphisms | II.4 |  |
-| 9 | Sheaves of modules | II.5 |  |
-| 10 | Quasi-coherent sheaves | II.5 |  |
-| 11 | Quasi-coherent sheaves on $\operatorname{Proj}S$ | II.5 |  |
-| 12 | Weil divisors | II.6 |  |
-| 13 | Cartier divisors | II.6 |  |
-| 14 | Projective morphisms, ample invertible sheaves | II.7 |  |
-| 15 | Linear system, relative $\mathbf{Proj}$ | II.7 |  |
+Here is a note of the seminar: [Notes-AG-2026](/latex/Notes%20on%20Seminar%20AG%202026/NotesAG.pdf)
+
+| Time | Topics | Hartshorne | Speaker | Notes |
+|---|--------|------------|---------| --- |
+| 2026/10/12 | Sheaves, stalks, local nature of sheaves  | II.1 | 章梓杭 | [Notes-AG-2026](/latex/Notes%20on%20Seminar%20AG%202026/NotesAG.pdf)1.1-1.3 |
+| 2026/10/19 | Sheafification, $\mathsf{Sh}$, global section functor| II.1 | 章梓杭 |[Notes-AG-2026](/latex/Notes%20on%20Seminar%20AG%202026/NotesAG.pdf)1.4-1.7  |
+| 2026/10/27 | Base sheaf, gluing sheaves, locally ringed spaces | II.2 | 章梓杭 | [Notes-AG-2026](/latex/Notes%20on%20Seminar%20AG%202026/NotesAG.pdf)1.8-2.3 |
+| 2026/11/2 |  | II.2 | 章梓杭 | [Notes-AG-2026](/latex/Notes%20on%20Seminar%20AG%202026/NotesAG.pdf)  |
+| 5 | Reduced, integral, noetherian, finite type, immersion | II.3 |  |   |
+| 6 | Algebraic scheme, dimension, fibred product | II.3 |  |    |
+| 7 | Separated and proper morphism, valuative criterion | II.4 |  |    |
+| 8 | Projective morphisms | II.4 |  |    |
+| 9 | Sheaves of modules | II.5 |  |    |
+| 10 | Quasi-coherent sheaves | II.5 |  |    |
+| 11 | Quasi-coherent sheaves on $\operatorname{Proj}S$ | II.5 |  |   |
+| 12 | Weil divisors | II.6 |  |    |
+| 13 | Cartier divisors | II.6 |  |    |
+| 14 | Projective morphisms, ample invertible sheaves | II.7 |  |   |
+| 15 | Linear system, relative $\mathbf{Proj}$ | II.7 |  |   |
 
 下面是讨论班的 PDF 版大纲: [Syllabus AG2026.pdf](/latex/Syllabus%20on%20Seminar%20AG%202026/Syllabus%20AG2026.pdf)
 
