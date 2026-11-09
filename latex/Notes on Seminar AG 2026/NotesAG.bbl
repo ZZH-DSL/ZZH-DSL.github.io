@@ -118,6 +118,51 @@
       \field{pages}{x+294}
       \range{pages}{-1}
     \endentry
+    \entry{GortzWedhorn}{book}{}
+      \name{author}{2}{}{%
+        {{hash=6ce6acdb0fb322d897f757dab4854fa0}{%
+           family={Görtz},
+           familyi={G\bibinitperiod},
+           given={Ulrich},
+           giveni={U\bibinitperiod}}}%
+        {{hash=19a9170cb8e6a605aacaaf60dcce3a64}{%
+           family={Wedhorn},
+           familyi={W\bibinitperiod},
+           given={Torsten},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Vieweg + Teubner, Wiesbaden}%
+      }
+      \strng{namehash}{f23b3d42d595de42569aeb63bfb2ea8c}
+      \strng{fullhash}{f23b3d42d595de42569aeb63bfb2ea8c}
+      \strng{bibnamehash}{f23b3d42d595de42569aeb63bfb2ea8c}
+      \strng{authorbibnamehash}{f23b3d42d595de42569aeb63bfb2ea8c}
+      \strng{authornamehash}{f23b3d42d595de42569aeb63bfb2ea8c}
+      \strng{authorfullhash}{f23b3d42d595de42569aeb63bfb2ea8c}
+      \field{labelalpha}{GorWed}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-8348-0676-5}
+      \field{note}{Schemes with examples and exercises}
+      \field{series}{Advanced Lectures in Mathematics}
+      \field{shorthand}{GorWed}
+      \field{title}{Algebraic geometry {I}}
+      \field{year}{2010}
+      \field{pages}{viii+615}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1007/978-3-8348-9722-0
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-8348-9722-0
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-8348-9722-0
+      \endverb
+    \endentry
     \entry{wikiDistribution}{misc}{}
       \name{author}{1}{}{%
         {{hash=22ce87ecbf938f6bc5403e5938971e87}{%
@@ -171,6 +216,64 @@
       \field{shorthand}{Ha}
       \field{title}{Algebraic geometry}
       \field{year}{1977}
+    \endentry
+    \entry{kemper}{book}{}
+      \name{author}{1}{}{%
+        {{hash=4d4bdeb1dac22611ea638f1595bc482b}{%
+           family={Kemper},
+           familyi={K\bibinitperiod},
+           given={Gregor},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{4d4bdeb1dac22611ea638f1595bc482b}
+      \strng{fullhash}{4d4bdeb1dac22611ea638f1595bc482b}
+      \strng{bibnamehash}{4d4bdeb1dac22611ea638f1595bc482b}
+      \strng{authorbibnamehash}{4d4bdeb1dac22611ea638f1595bc482b}
+      \strng{authornamehash}{4d4bdeb1dac22611ea638f1595bc482b}
+      \strng{authorfullhash}{4d4bdeb1dac22611ea638f1595bc482b}
+      \field{labelalpha}{Kem}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{shorthand}{Kem}
+      \field{title}{A course in commutative algebra}
+      \field{year}{2011}
+    \endentry
+    \entry{Liuqing}{book}{}
+      \name{author}{1}{}{%
+        {{hash=38189fe02b562b8892bd694420804211}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Qing},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press, Oxford}%
+      }
+      \strng{namehash}{38189fe02b562b8892bd694420804211}
+      \strng{fullhash}{38189fe02b562b8892bd694420804211}
+      \strng{bibnamehash}{38189fe02b562b8892bd694420804211}
+      \strng{authorbibnamehash}{38189fe02b562b8892bd694420804211}
+      \strng{authornamehash}{38189fe02b562b8892bd694420804211}
+      \strng{authorfullhash}{38189fe02b562b8892bd694420804211}
+      \field{labelalpha}{Liu}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0-19-850284-2}
+      \field{note}{Translated from the French by Reinie Erné, Oxford Science Publications}
+      \field{series}{Oxford Graduate Texts in Mathematics}
+      \field{shorthand}{Liu}
+      \field{title}{Algebraic geometry and arithmetic curves}
+      \field{volume}{6}
+      \field{year}{2002}
+      \field{pages}{xvi+576}
+      \range{pages}{-1}
     \endentry
     \entry{nes}{book}{}
       \name{author}{1}{}{%

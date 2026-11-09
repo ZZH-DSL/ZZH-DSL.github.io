@@ -1401,6 +1401,7 @@ on $ X $.
 \end{definition}
 
 \begin{corollary}
+    \label{cor: stalks of restriction}
   Let $ Z $ be a subset of $ X $, $ \mathscr{F} $ be a sheaf on $ X $. 
   Then $ (\mathscr{F}\mid_{Z})_{P} = \mathscr{F}_{P} $ for any point $ P \in Z $. 
 \end{corollary}
@@ -1422,6 +1423,7 @@ on $ X $.
     \item $ f(\mathfrak{m}_{A}) \subseteq \mathfrak{m}_{B} $.  
   \end{enumerate} 
   If $ f $ satifies the equivalent condition above, we say that $ f $ is a \textbf{local homomorphism}. 
+  The composition of local homomorphisms is also a local homomorphism. 
 \end{lemma}
 
 \begin{proof}
@@ -1431,6 +1433,10 @@ on $ X $.
   then $ \mathfrak{m}_{A} \subseteq f^{-1} f \mathfrak{m}_{A} \subseteq f^{-1}(\mathfrak{m}_{B}) $. 
   Since $ \mathfrak{m}_{A} $ is maximal, and $ f^{-1}(\mathfrak{m}_{B}) $ is a prime ideal, 
   we have $ f^{-1}(\mathfrak{m}_{B}) = \mathfrak{m}_{A} $, this proves (b) $ \implies $ (a).  
+
+  Let $ \psi: (B,\mathfrak{m}_{B}) \to (C,\mathfrak{m}_{C}) $ be a local homomorphism. 
+  Then $ \psi\varphi(\mathfrak{m}_{A})=\psi(\mathfrak{m}_{B})=\mathfrak{m}_{C} $. 
+  This proves $ \psi \varphi $ is also a local homomorphism. 
 \end{proof}
 
 
@@ -1498,6 +1504,47 @@ So we can restate the condition of local homomorphism by the following lemma.
   thus $ f^{\sharp} $ is a local homomorphism. 
 \end{proof}
 
+\begin{lemma}
+    \label{lemma: isomorphism of locally ringed spaces}
+    The category $ \mathsf{LRS} $ of locally ringed spaces is a category, 
+    i.e. the composition of $(f,f^{\sharp}): (X,\mathscr{O}_{X}) \to (Y,\mathscr{O}_{Y}) $ 
+    and $ (g,g^{\sharp}): (Y,\mathscr{O}_{Y}) \to (Z,\mathscr{O}_{Z}) $ is also a morphism 
+    between locally ringed spaces. 
+
+    Let $ (f,f^{\sharp}): (X,\mathscr{O}_{X}) \to (Y,\mathscr{O}_{Y}) $ be a morphism of locally ringed spaces. 
+    Then $ (f,f^{\sharp}) $ is an isomorphism if and only if $ f:|X| \to |Y| $ is a homeomorphism 
+    and $ f^{\sharp}: \mathscr{O}_{Y} \to f_{*}\mathscr{O}_{X} $ is an isomorphism of sheaves. 
+\end{lemma}
+
+\begin{proof}
+    Since $ f_{*} $ is a functor, we have 
+    \begin{center}
+        \begin{tikzcd}
+                                      & \mathscr{O}_Y \arrow[d] \arrow[r, "f^{\sharp}"] & f_*\mathscr{O}_X \arrow[d] \\
+\mathscr{O}_Z \arrow[r, "g^{\sharp}"] & g_*\mathscr{O}_Y \arrow[r, "g_*(f^{\sharp})"]   & g_*f_*\mathscr{O}_X       
+\end{tikzcd}
+    \end{center}
+    and the composition 
+    $$(g \circ f)^{\sharp}:=g_{*}(f^{\sharp}) \circ g^{\sharp}: \mathscr{O}_{Z} \to g_*f_*\mathscr{O}_X = (g \circ f)_{*}\mathscr{O}_{X} $$ 
+    is a morphism of sheaves. 
+    By \autoref{lemma: stalks of image}, 
+    stalks are preserved under direct image. 
+    Hence $( g_{*}\mathscr{O}_{Y} )_{gf(x)}=\mathscr{O}_{Y,f(x)}$ 
+    and $ (g_{*}f_{*}\mathscr{O}_{X})_{x} = \mathscr{O}_{X,x} $. 
+    The local map $ \mathscr{O}_{Z,gf(x)} \to \mathscr{O}_{X,x} $ 
+    is a composition of local maps $ \mathscr{O}_{Z,gf(x)} \to \mathscr{O}_{Y,f(x)} $ 
+    and $ \mathscr{O}_{Y,f(x)} \to \mathscr{O}_{X,x} $, 
+    which is also a local map by \autoref{lemma: local homomorphism}. 
+
+    If $ f $ is a homeomorphism and $ f^{\sharp} $ is an isomorphism of sheaves. 
+    Then $ f^{\sharp}_{x}: \mathscr{O}_{Y,f(x)} \to \mathscr{O}_{X,x} $ 
+    is an isomorphism for any $ x \in X $. 
+    Let $ g=f^{-1}: Y \to X $, then we can obtain $ g^{\sharp}:\mathscr{O}_{X} \to g_{*}\mathscr{O}_{Y} $ 
+    by $ \mathscr{O}_{X}(U) \to \mathscr{O}_{Y}(f(U)) $. 
+    It's easy to verify that $ (g \circ f)^{\sharp}=\id = (f \circ g)^{\sharp} $ 
+    by checking it on the level of stalks. The converse is also easy to verify. 
+\end{proof}
+
 \begin{example}
   Let $ (X,\mathscr{C}_{X}) $ be a ringed space, 
   where $ X $ is a topological space and $ \mathscr{C}_{X} $ 
@@ -1524,7 +1571,7 @@ So we can restate the condition of local homomorphism by the following lemma.
   function at $ f(P) $, we have 
   $ f^{\sharp}(g)(f(P)) = g \circ f(P) =0 $ if and only if 
   $ g(f(P))=0 $. Therefore, $ f^{\sharp}_{P} $ is a local homomorphism, 
-  by \ref{lemma: induced local homomorphism}. 
+  by \autoref{lemma: induced local homomorphism}. 
 \end{example}
 
 \begin{example}
@@ -2023,8 +2070,99 @@ we sometimes write $ \widetilde{A} $ for the structure sheaf of $ \Spec A $.
     This proves that $ \varinjlim_{f \notin \mathfrak{p}} A_{f} = A_{\mathfrak{p}} $. 
 \end{proof}
 
+\subsubsection{Topological Properties of Affine Schemes}
 
-\subsection{Morphisms To Affine Schemes}
+Recall that a topological space is said to be \textbf{irreducible} if it is nonempty, 
+and it is not a union of two proper closed subsets, i.e., 
+$$ X = Y \cup Z \implies X=Y \text{ or } X=Z.$$
+
+In classical algebraic geometry, we have known that an algebraic set $ Z(\mathfrak{a}) $ is irreducible 
+if and only if the corresponding radical ideal $ \sqrt{\mathfrak{a}}=IZ(\mathfrak{a}) $ is 
+a prime ideal (\cite[Corollary 1.4]{hartsAG}). We have an analogue for affine schemes: 
+
+\begin{lemma}
+    \label{lemma: irreducible in affine scheme}
+    \cite[Theorem 3.10]{kemper} 
+    The subset $ X \subseteq \Spec A $ is irreducible if and only if $ I(X) $ is a prime ideal. 
+    In particular, an affine scheme $ \Spec A$ is irreducible if and only if the nilradical 
+    $ \operatorname{nil}(A) $ is a prime ideal.  
+\end{lemma}
+
+\begin{proof}
+    \begin{itemize}
+        \item $ \Rightarrow: $ If $ I(X) $ is not a prime ideal, then there exists $ a,b \in A $ 
+        such that $ ab \in I(X) $ but $ a,b \notin I(X) $. Claim that $ X = V((a))\cup V((b)) $. 
+        Indeed, for any prime ideal $ \mathfrak{p} \in X $, we have $ I(X) \subseteq \mathfrak{p} $ 
+        hence $ ab \in \mathfrak{p} $. Therefore, $ \mathfrak{p} $ is in $ V((a)) $ or $ V((b)) $. 
+        But $ V((a)) $ and $ V((b)) $ are both proper subset of $ X $, a contradiction. 
+
+        \item $ \Leftarrow: $ For any closed subset $ Y,Z $ such that 
+        $ X = Y \cup Z $, we have $ I(X)=I(Y) \cap I(Z) $. If $ I(X) $ is a prime ideal, then 
+        either $ I(Y)=I(X) $ or $ I(Z)=I(X) $, which implies that either $ Y = X$ or $ Z = X $ 
+        by \autoref{cor: correspondence radical ideals closed subsets}. This proves $ X $ is irreducible. 
+    \end{itemize}
+\end{proof}
+
+Another important topological properties of schemes is noetherian. 
+Recall that a \textbf{noetherian} space is a topological space satisfying the \textbf{descending chain condition} 
+for closed subsets: for any sequence $ Y_{1} \supseteq Y_{2} \supseteq \cdots $ of closed sets, 
+there is an integer $ r $ such that $ Y_{r}=Y_{r+1} $. 
+
+\begin{lemma}
+    \cite[Exercise 3.6.T]{vakilTheRisingSea} 
+    If $ A $ is a noetherian ring, then $ \Spec A $ is a noetherian space. 
+\end{lemma}
+
+\begin{proof}
+    Consider a ascending ideal chain $ I(Y_{1}) \subseteq I(Y_{2}) \subseteq \cdots $ 
+    corresponding to the descending chain $ Y_{1} \supseteq Y_{2} \supseteq \cdots $ 
+    of closed subsets. 
+    Since $ A $ is a noetherian ring, the ascending ideal chain must be stable at some $ r $, 
+    i.e., $ I(Y_{r+1})=I(Y_{r}) $, hence $ Y_{r+1}=VI(Y_{r+1})=VI(Y_{r})=Y_{r} $. 
+    This proves $ \Spec A $ is a noetherian space. 
+\end{proof}
+
+\begin{example}(\textbf{A noetherian spectrum is not necessarily a spectrum of a noetherian ring})
+    \cite[Exercise 3.6.T]{vakilTheRisingSea} 
+    Let $ A = k[x_{1},x_{2},x_{3},\dots] / (x_{1},x_{2}^{2},x_{3}^{3},\dots) $. 
+    Then $ \Spec A $ is a singleton, with the only one prime ideal 
+    $ (x_{1},x_{2},\dots)/ (x_{1},x_{2}^{2},\dots) $, since each prime ideal will contain $ x_{1},x_{2},\dots $. 
+    Hence $ \Spec A $ is a noetherian space. 
+    But $ A $ is not noetherian, with an infinitely ascending chain 
+    $ (x_{1})/ (x_{1},x_{2}^{2},\dots) \subsetneq (x_{1},x_{2})/ (x_{1},x_{2}^{2},\dots) \subsetneq $ of ideals in $ A $. 
+\end{example}
+
+\cite[Proposition 1.5]{hartsAG} has shown that in a noetherian topological space $ X $, 
+every closed subset $ Y $ can be expressed as a finite union $ Y = Y_{1} \cup \cdots \cup Y_{r} $ 
+of closed irreducible components (i.e., the maximal irreducible subsets) of $ Y $. 
+
+We now illustrate what is the irreducible components of $ \Spec A $. 
+
+\begin{proposition}
+    \cite[Exercise 3.7.G]{vakilTheRisingSea}, \cite[Corollary 3.14]{kemper}
+    \begin{enumerate}[label = (\alph*)]
+        \item The subset $ X \subseteq \Spec A $ is a irreducible component if and only if $ I(X) $ is a minimal prime ideal. 
+        \item If $ A $ is a noetherian ring, then there exists finitely some minimal prime ideals $ \mathfrak{p}_{1},\dots,\mathfrak{p}_{r} $, 
+        such that 
+        $$ \Spec A = V(\mathfrak{p}_{1}) \cup \cdots \cup V(\mathfrak{p}_{r}). $$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item Suppose $ X $ is a irreducible component. Consider $ \mathfrak{a} \subseteq I(X) $, 
+        then $ X \subseteq V(\mathfrak{a}) $. Since $ X $ is a irreducible component, $ V(\mathfrak{a}) $ is 
+        not irreducible, hence $ \mathfrak{a} $ is not a prime ideal, by \autoref{lemma: irreducible in affine scheme}. 
+        Conversely, if $ I(X) $ is a minimal prime ideal, then $ X \subseteq Y $ implies that $ I(Y) \subseteq I(X) $ 
+        is not a prime ideal, hence $ Y $ is not irreducible. 
+
+        \item By \cite[Proposition 1.5]{hartsAG}. 
+    \end{enumerate}
+\end{proof}
+
+\subsection{Category of Affine Schemes}
+
+\subsubsection{Morphisms To Affine Schemes}
 
 Let $ (X, \mathscr{O}_{X}) $ be a locally ringed space. 
 Now we describe the morphism $ X \to \Spec A $. 
@@ -2041,7 +2179,8 @@ Now we describe the morphism $ X \to \Spec A $.
     \begin{enumerate}[label = (\alph*)]
         \item $ D'(s) $ is an open subset. 
         \item Moreover, $ s \mid_{D'(s)} $ is invertible in $ \mathscr{O}_{X}(D'(s)) $. 
-        \item If $ X = \Spec A $, then $ D'(s)=D(s) $. 
+        \item If $ X = \Spec A $, and $ s \in A $ then we have $ D'(s)=D(s) $, 
+        i.e., $ s \mid_{D(s)} $ is invertible. 
     \end{enumerate}
 \end{lemma}
 
@@ -2071,7 +2210,8 @@ Now we describe the morphism $ X \to \Spec A $.
     \end{enumerate}
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}[Fundamental theorem on morphisms of schemes]
+    \label{thm: locally ringed space to affine scheme}
     \cite[Theorem I-40]{EisenbudHarris} 
     For any locally ringed space $ X $ and any ring $ A $, the morphisms 
     $$ (f,f^{\sharp}) : X \to \Spec A $$
@@ -2111,39 +2251,197 @@ Now we describe the morphism $ X \to \Spec A $.
     locally ringed space $ (X,\mathscr{O}_{X}) $. 
 \end{corollary}
 
+Let $ \mathsf{LRS} $ be the category of locally ringed spaces. 
+\autoref{thm: locally ringed space to affine scheme} actually told us: 
+$ (\Gamma,\Spec) $ is adjoint. 
+
 \begin{theorem}
+    \label{thm: adjoint Spec}
     \cite[Exercise II.2.4]{hartsAG}
-    $ \Spec $ can be viewed as a contravariant functor $ \mathsf{CRing} \to \mathsf{LRS}$, 
-    and the global section functor $ \Gamma $ is a contravariant functor 
-    $ \mathsf{LRS} \to \mathsf{CRing} $. Then $ (\Spec,\Gamma) $ adjoint. 
+    $ \Spec $ can be viewed as a covariant functor $ \mathsf{CRing}^{\operatorname{op}} \to \mathsf{LRS}$, 
+    and the global section functor $ \Gamma $ is a covariant functor 
+    $ \mathsf{LRS} \to \mathsf{CRing}^{\operatorname{op}} $. 
+    Then $ \Gamma $ is left adjoint to $ \Spec $. 
 \end{theorem}
 
-\begin{corollary}
-    \cite[Proposition II.2.3]{hartsAG}
+\begin{proof}
+    It is just a corollary of \autoref{thm: locally ringed space to affine scheme}, 
+    where the correspondence is typically given by sending a morphism $ f: X \to \Spec A $ to 
+    the pullback on global sheaves $ f^{\sharp}(\Spec A): A \to \Gamma(X,\mathscr{O}_{X}) $. 
+\end{proof}
+
+\subsubsection{Category of Affine Schemes}
+
+Now we focus on the category of affine schemes. 
+Let $ \mathsf{AffSch} $ be the category consisting of affine schemes, as a full subcategory 
+of the category of locally ringed spaces $ \mathsf{LRS} $. 
+
+\begin{corollary}[Duality between affine schemes and rings]
+    \label{cor: duality between affine schemes and rings}
+    \cite[Proposition II.2.3]{hartsAG}, \cite[Exercise 7.3 E]{vakilTheRisingSea}
+    \begin{enumerate}[label = (\alph*)]
+        \item If $ \varphi:A \to B $ is a homomorphism of rings, then $ \varphi $ induces a natural 
+        morphism of locally ringed spaces 
+        $$ f: \Spec B \to \Spec A, \quad [\mathfrak{p}] \mapsto [\varphi^{-1}(\mathfrak{p})] $$ 
+        with the pullback map on sheaves 
+        $$ f^{\sharp}(D(f))=\varphi_{f}: A_{f} \to B_{\varphi(f)}, \quad f \in A. $$
+
+        \item If $ A $ and $ B $ are rings, then any morphisms of locally ringed spaces $f: \Spec B \to \Spec A$ 
+        is induced by a homomorphism of rings $ \varphi=f^{\sharp}(\Spec A):A \to B $. 
+
+        \item The category $ \mathsf{AffSch} $ is equivalent to the opposite category 
+        of commutative rings, $ \mathsf{CRings}^{\operatorname{op}} $. 
+    \end{enumerate}
 \end{corollary}
+
+\begin{proof}
+    (a) and (b) are induced from \autoref{thm: locally ringed space to affine scheme}. 
+    By (a) and (b), the functor $ \Spec:\mathsf{CRings}^{\operatorname{op}} \to  \mathsf{AffSch} $ 
+    is fully faithful. Obviously, it is essentially surjective. This proves (c). 
+\end{proof}
+
+\begin{corollary}
+    \label{cor: fibre product of affine schemes}
+    \cite[\href{https://stacks.math.columbia.edu/tag/01I4}{Lemma 01I4}]{stacks} 
+    The category of affine schemes has finite products, and fibre products. 
+    Moreover, the products and fibre products in the category of affine schemes are the same as 
+    in the category of locally ringed spaces. 
+    In a formula, we have 
+    $$ \Spec A \times \Spec B = \Spec (A \otimes_{\mathbb{Z}} B),$$
+    and given ring maps $ R \to A $ and $ R \to B $ (given the $ R $-algebra structure on $ A $ and $ B $), 
+    we have 
+    $$ \Spec A \times_{\Spec R} \Spec B = \Spec (A \otimes_{R} B).$$
+\end{corollary}
+
+\begin{proof}
+    By \autoref{thm: adjoint Spec}, $ \Spec $ is a right adjoint functor, 
+    hence preserves limit in the opposite category of commutative rings. 
+    Thus, $ \Spec A \times_{\Spec R} \Spec B = \Spec (A \otimes_{R} B)  $, 
+    where $ A \otimes_{R} B $ is a fibre coproduct in $ \mathsf{CRing} $. 
+\end{proof}
+
+Let $ k $ be a base field, with an extension field $ K $. If $ A $ is a $ k $-algebra, 
+then there is a ring homomorphism $ k \to A $, inducing a morphism of schemes $ \Spec A \to \Spec k $. 
+In this sense, we say $ \Spec A $ (with a structure map $ \Spec A \to \Spec k $) is a \textbf{$ k $-scheme}. 
+Morphisms between $ k $-schemes are morphisms of schemes commuting with the structure maps. 
+For example, let $ B $ be a $ k $-algebra, then the morphism $ \Spec B \to \Spec A$ is associated with 
+a $ k $-linear map $ A \to B $, that is, $ k \to B $ is equal to the composition of $ k \to A $ and $ A \to B $. 
+\begin{center}
+    \begin{tikzcd}
+        k \arrow[r]\arrow[rd] & A \arrow[d] \\
+        & B 
+    \end{tikzcd}
+    associated with 
+    \begin{tikzcd}
+        \Spec k  & \Spec A \arrow[l] \\
+        & \Spec B \arrow[u] \arrow[ul]
+    \end{tikzcd}
+\end{center}
+
+One application of fibre product is \textbf{base extension}. For a $ k $-algebra $ A $, 
+we can obtain a $ K $-algebra, by taking the tensor product $ A \otimes_{k} K $. 
+Similarly, we can obtain $ X' := X \times_{k} K$, a $ K $-scheme from $ X = \Spec A$  by making a base extension $ \Spec K \to \Spec k $, 
+with the following diagram: 
+\begin{center}
+\begin{tikzcd}
+k  \arrow[r] \arrow[d]  & K \arrow[d,] \\
+ A \arrow[r] &  A \otimes_{k} K \arrow[ul, phantom, "\lrcorner", very near start]
+\end{tikzcd}
+    associated with 
+    \begin{tikzcd}
+        \Spec (A \otimes_{k} K) \arrow[dr, phantom, "\ulcorner", very near start] \arrow[r] \arrow[d]& \Spec K \arrow[d] \\
+        \Spec A \arrow[r] & \Spec k
+    \end{tikzcd}
+\end{center}
 
 \subsection{Schemes}
 
+\subsubsection{Definition of Schemes}
+
 \begin{definition}[Schemes]
+    A \textbf{schemes} is a locally ringed space $ (X,\mathscr{O}_{X}) $, such that 
+    there exists an open affine cover $ (U_{i},\mathscr{O}_{X}\mid_{U_{i}}) = \Spec A_{i} $ of $ (X,\mathscr{O}_{X}) $. 
     
+    We call $ X $ the \textbf{underlying topological space} of the scheme $ (X,\mathscr{O}_{X}) $, 
+    and $ \mathscr{O}_{X} $ its \textbf{structure sheaf}. By abuse of notation we will often write 
+    simply $ X $ for the scheme $ (X,\mathscr{O}_{X}) $, and $ \operatorname{sp}(X) $ or simply $ |X| $ 
+    for the underlying topological space. 
+
+    A \textbf{morphism} of schemes is a morphism as locally ringed spaces. 
+    The category of schemes is denoted by $ \mathsf{Sch} $. 
 \end{definition}
 
-\begin{definition}[Schemes over a base]
-    
-\end{definition}
+Let $ (X,\mathscr{O}_{X}) $ be a locally ringed space. Let $ U $ be an open subset of $ |X| $, 
+then $ (U,\mathscr{O}_{X}\mid_{U}) $ is also a locally ringed space, since the stalks $ (\mathscr{O}_{X}\mid_{U})_{x} $ 
+admits with $ \mathscr{O}_{X,x} $ at any point $ x \in X $, which are local rings. 
+In particular, an open subset of a scheme is also a scheme, endowed with the restriction of the structure sheaf. 
 
 \begin{lemma}[Open subschemes]
     \cite[Exercise II.2.2]{hartsAG}
+    Let $ (X,\mathscr{O}_{X}) $ be a scheme, and let $ U \subseteq X $ be any open set.  
+    $ (U,\mathscr{O}_{X}\mid_{U}) $ is also a scheme, called the \emph{induced scheme structure}. 
     
 \end{lemma}
 
-\begin{definition}[Residue field]
+\begin{proof}
+    We only need to prove that $ U $ can be covered by some open affine covers. 
+    Let $ \{U_{i}\} $ be an open affine cover of $ X $, then $ \{U_{i} \cap U \}$ is an open cover of $ U $. 
+    Since for each $ i $, $ U_{i} \cap U $ is an open subset of $ U_{i} \cong \Spec A_{i} $, 
+    $ U_{i} \cap U $ is covered by some distinguished open sets $ D(f_{ij}) \subseteq U_{i} $, for some $ f_{ij} \in A_{i} $.  
+    Therefore, $ U = \bigcup_{i} (U_{i} \cap U) = \bigcup_{i,j} D(f_{ij}) $, where $ D(f_{ij}) \cong \Spec A_{i,f_{ij}} $ 
+    is an open affine subset. 
+\end{proof}
+
+
+As we discussed above, we sometimes care more about the $ k $-schemes, since schemes finite type over $ k $ 
+(which we will introduce later) is a generalization of affine $ k $-varieties. 
+
+\begin{definition}
+    Let $ S $ be a fixed scheme. A \textbf{scheme over} $ S $ is a scheme $ X $, together with a structure morphism 
+    $ X \to S $. 
     
+    If $ X $ and $ Y $ are schemes over $ S $, a $ S $-morphism of $ X $ to $ Y $ is a morphism 
+    $ f: X\to Y $ which is compatible with the structure morphisms to $ S $. 
+    We denote by $ \mathsf{Sch}_{S} $ the category of schemes over $ S $. If $ A $ is a ring, 
+    then by abuse of notation we write $ \mathsf{Sch}_{A} $ for the category of schemes over $ \Spec A $. 
+\end{definition}
+
+It's easy to verify that, the category of affine schemes over $ k $, $ \mathsf{AffSch}_{k} $ is 
+equivalent to the opposite category of $ k $-algebras, $ \mathsf{Alg}_{k}^{\operatorname{op}}$, 
+according to \autoref{cor: duality between affine schemes and rings}. 
+
+
+
+\begin{definition}
+    Let $ X $ be a scheme. For any $ x \in X $, let $ (\mathscr{O}_{X,x},\mathfrak{m}_{X,x}) $ be the local ring at $ x $. 
+    We define the \textbf{residue field} of $ x $ on $ X $ to be the field $ \kappa(x) = \mathscr{O}_{X,x} / \mathfrak{m}_{X,x} $. 
+
+    If $ X $ is a scheme over a field $ k $, a point $ x \in X $ is \textbf{rational over }$ k $ if 
+    $ \kappa(x)=k $. 
 \end{definition}
 
 \begin{lemma}
     \cite[Exercise II.2.7]{hartsAG}
+    Let $ K $ be any field. Let $ X $ be a scheme. Then there is a correspondence between morphisms 
+    $ \Spec K \to X $ and pairs $ (x,\varphi) $ consisting of a point $ x \in X $ and a field homomorphism 
+    $ \kappa(x) \to K $. 
+    
+    Therefore, we call $ X(K):= \mathrm{Hom}_{\mathsf{Sch}}(\Spec K,X) $ the set of $ k $\emph{-valued points} in $ X $. 
 \end{lemma}
+
+\begin{proof}
+    Given a morphism $ \Spec K \to X $ we will obtain the image $ x \in X $ of the only point in $ \Spec K $. 
+    Moreover, there is a induced local map $ \mathscr{O}_{X,x} \to K $, which sending the maximal ideal 
+    $ \mathfrak{m}_{X,x} $ to the zero ideal. Therefore, $ \mathscr{O}_{X,x} \to K $ factors through 
+    $ \kappa(x) \to k $. 
+    
+    Conversely, $ \varphi: \kappa(x) \to k $ determines a local map $ \mathscr{O}_{X,x} \to k $. 
+    Let $ x: \Spec K \to X $ be the continuous map given by $ * \mapsto x $. 
+    The pullback map of structure sheaf is defined by $ \Gamma(U,\mathscr{O}_{X}) \to K $, for any 
+    open neighborhood $ U $ of $ x $, which is the composition of $ \Gamma(U,\mathscr{O}_{X}) \to \mathscr{O}_{X,x}$ 
+    and $ \mathscr{O}_{X,x} \to k $. 
+\end{proof}
+
 
 \begin{definition}
     If $ X $ is a topological space, and $ Z \subseteq X $ an irreducible closed subset of $ X $, 
@@ -2160,13 +2458,32 @@ In particular, if $ A $ is an integral domain, then $ [(0)] $ is a generic point
 
 \begin{proposition}
     \cite[Exercise II.2.9]{hartsAG}
-    If $ X $ is a scheme, then any irreducible closed subset has a unique generic point. 
+    If $ X $ is a scheme, then any irreducible closed subset of $ X $ has a unique generic point. 
 \end{proposition}
 
+\begin{proof}
+    We first prove the case of affine schemes. 
+    Let $ A $ be a ring, consider a closed irreducible subset $ V(\mathfrak{p}) \subseteq \Spec A $. 
+    By \autoref{lemma: irreducible in affine scheme}, we can assume $ \mathfrak{p} $ be a prime ideal. 
+    A generic point $ [\mathfrak{q}] $ in $ V(\mathfrak{p})$ is a prime ideal such that 
+    $ V(\mathfrak{q})=V(\mathfrak{p}) $, thus the unique generic point of $  V(\mathfrak{p}) $ is $ [\mathfrak{p}]$.  
+
+    Now let $ X $ be a general scheme. Let $ Z \subseteq X $ be a closed irreducible subset. 
+    Let $ U $ be an open affine subset of $ X $ such that $ U \cap Z \neq \varnothing $, 
+    then $ U \cap Z $ is an open subset in $ Z $. By \cite[Example I.1.1.3]{hartsAG}, 
+    $ U \cap Z $ is dense and irreducible in $ Z $. Hence the irreducible subset 
+    $ U \cap Z $ of an affine scheme $ U $ has a unique generic point $ \zeta $. 
+    Since $ U \cap Z $ is dense in $ Z $, $ \zeta $ is also a generic point of $ Z $. 
+
+    Now we prove the uniqueness. If $ \zeta' $ is a generic point of $ Z $. 
+    Then $ \zeta' $ is contained in $ U \cap Z $, for every open affine subset $ U \subseteq X $. 
+    Therefore $ \zeta'=\zeta $ in $ U $, which proves the uniqueness. 
+\end{proof}
 
 
 
-\subsection{Examples of Affine Schemes}
+
+\subsubsection{Examples of Affine Schemes}
 
 
 
@@ -2238,7 +2555,23 @@ a radical ideal, i.e., $ \sqrt{\mathfrak{a}} = \mathfrak{a} $.
     $ \Spec A / \mathfrak{a} $. 
 \end{example}
 
-\subsection{Examples of Schemes}
+\begin{example}[Rational points]
+    \cite[Proposition 2.18]{Liuqing}
+    Let $ A $ be a finitely generated $ k $-algebra, and let $ K / k $ be a field extension. 
+    Let $ X = \Spec A $ be an affine scheme over $ k $.  
+    The following properties are true. 
+    \begin{enumerate}[label = \alph*]
+        \item We have a canonical bijection $ X(K) \to  X \times_{k} K(K)$. 
+        \item Any element of $ X(K) $ is uniquely determined by the data consisting of a point 
+        $ x \in X $ and a $ k $-linear map $ \kappa(x) \to K$. 
+        \item For any extension $ K' $ of $ K $, we have a natural inclusion $ X(K) \subseteq X(K') $. 
+        \item If $ V(\mathfrak{a}) $ is a closed subscheme  of $ X=\Spec A $, where $ A =k[x_{1},\dots,x_{n}] $ 
+         then we can identify $ X(K) $ 
+        with $ \{(x_{1},\dots,x_{n}) \in K^{n} : f(x_{1},\dots,x_{n})=0: \forall f \in A\} $ 
+    \end{enumerate}
+\end{example}
+
+\subsubsection{Examples of General Schemes}
 
 
 \begin{example}[Zariski tangent space]
@@ -2293,6 +2626,26 @@ a radical ideal, i.e., $ \sqrt{\mathfrak{a}} = \mathfrak{a} $.
 
 \subsection{Toplogical properties}
 
+
+\begin{proposition}
+    \cite[Proposition 3.25]{GortzWedhorn} 
+    Let $ X $ be a scheme. Then the underlying topological space of $ X $ is a $ T_{0} $ space, 
+    i.e., for any two distinct points $ x,y \in X $, there exists an open subset of $ X $ 
+    which contains exactly one of the points. 
+\end{proposition}
+
+\begin{proof}
+    We first prove the case of affine schemes. For any $ [\mathfrak{p}],[\mathfrak{q}] \in \Spec A $, 
+    suppose that $ \mathfrak{p} \not \subseteq \mathfrak{q} $. Hence we can choose an 
+    $ f \in \mathfrak{p} \not \subseteq \mathfrak{q}$, and $ [\mathfrak{p}] \notin D(f) $ but $ [\mathfrak{q}] \in D(f) $, 
+    where $ D(f) $ is a distinguished open set. 
+
+    For general schemes $ X $, let $ U $ be an open affine neighborhood of $ x $. 
+    If $ y \notin U $ then $ U $ is the open subset separates $ x $ and $ y $. 
+    If $ y \in U $, then we can reduce to the affine case. 
+\end{proof}
+
+
 \subsection{Reducedness \& Intergrality}
 
 \begin{proposition}
@@ -2309,9 +2662,98 @@ a radical ideal, i.e., $ \sqrt{\mathfrak{a}} = \mathfrak{a} $.
 
 
 \subsection{Immersions}
+\subsubsection{Immersions of Locally Ringed Spaces}
+This subsubsection is referred to \cite[\href{https://stacks.math.columbia.edu/tag/01HD}{Section 01HD}]{stacks} 
+and \cite[\href{https://stacks.math.columbia.edu/tag/01HJ}{Tag 01HJ}]{stacks}. 
+
+\begin{definition}
+    Let $ f: X \to Y $ be a morphism of locally ringed spaces. We say that $ f $ is an \textbf{open immersion} 
+    if $ f $ is a homeomorphism of $ X $ onto an open subset of $ Y $, and the map $ f^{-1}\mathscr{O}_{Y} \to \mathscr{O}_{X} $ 
+    is an isomorphism.  
+\end{definition}
+
+\begin{example}
+    Let $ X $ be a locally ringed space. Let $ U \subseteq X $ 
+    be an open subst. Let $ \mathscr{O}_{U} = \mathscr{O}_{X}\mid_{U} $ 
+    be the restriction of $ \mathscr{O}_{X} $ to $ U $. 
+    For $ x \in U $, the stalk $ \mathscr{O}_{U,x} $ is equal to 
+    the stalk $ \mathscr{O}_{X,x} $ by \autoref{cor: stalks of restriction}, 
+    and hence is a local ring. Thus $ (U,\mathscr{O}_{U}) $ 
+    is a locally ringed space, and the morphism $ i:(U,\mathscr{O}_{U})\to(X,\mathscr{O}_{X}) $ 
+    is an open immersion. 
+\end{example}
+
+\begin{lemma}
+    \label{lemma: uniqueness of open immersion}
+    \cite[\href{https://stacks.math.columbia.edu/tag/01HH}{Lemma 01HH}]{stacks}
+    Let $ f: X \to Y $ be an open immersion of locally ringed spaces. 
+    Let $ i: V=f(X) \to Y $ be the open subspace of $ Y $ 
+    associated to the image of $ f $, i.e., $ (f(X),\mathscr{O}_{Y}\mid_{f(X)}) $. 
+    Then there is a unique isomorphism $ f' : X \cong V $ 
+    of locally ringed spaces such that $ f = i \circ f' $. 
+\end{lemma}
+
+\begin{proof}
+    Let $ f' $ be the homeomorphism between $ X $ and $ V $ induced by $ f $. 
+    Then $ f=i \circ f' $ as continuous maps. 
+    Since there is an isomorphism of sheaves $ f^{\sharp}: f^{-1}\mathscr{O}_{Y} \to \mathscr{O}_{X} $, 
+    there is isomorphism of rings $ f^{\sharp}: f^{-1}\mathscr{O}_{Y}(U) \to \mathscr{O}_{X}(U) $ 
+    for each open subset $ U \subseteq X $. 
+    Since $ \mathscr{O}_{V} = i^{-1}\mathscr{O}_{Y} $ 
+    and $ f^{-1} = f'^{-1} i^{-1} $, we see that $ f^{-1}\mathscr{O}_{Y}=f'^{-1}\mathscr{O}_{V} $, 
+    hence $ f'^{-1}\mathscr{O}_{V}(U) \to f^{-1}\mathscr{O}_{Y}(U) $ 
+    is an isomorphism for every open subset $ U \subseteq X $. 
+    By composing these we get an isomorphism of rings 
+    $$ f'^{-1}\mathscr{O}_{V}(U) \to \mathscr{O}_{X}(U) $$
+    for each open subset $ U \subseteq X $, 
+    and therefore an isomorphism of sheaves $ f'^{-1}\mathscr{O}_{V} \to \mathscr{O}_{X}$. 
+    By \autoref{lemma: isomorphism of locally ringed spaces}, this gives an isomorphism of locally ringed spaces 
+    $ (f',f'^{\sharp}):(X,\mathscr{O}_{X}) \to (V,\mathscr{O}_{V}) $, 
+    where $ f = i \circ f' $. 
+
+    Now we prove the uniqueness. Suppose we have another morphism 
+    $ f'' : (X,\mathscr{O}_{X}) \to (V,\mathscr{O}_{V}) $ such that $ f = i \circ f'' $. 
+    From the construction we can conclude that $ f' $ and $ f'' $ are the same as a continuous map. 
+    On structure sheaves, for each open subset $ U \subseteq X $ we have a commutative diagram 
+    \begin{center}
+        \begin{tikzcd}
+f^{-1}\mathscr{O}_Y(U) \arrow[r, "\cong"] \arrow[d, "\cong"']                                          & \mathscr{O}_X(U) \\
+f'^{-1}\mathscr{O}_Y(U) \arrow[ru, "f'^{\sharp}", shift left] \arrow[ru, "f''^{\sharp}"', shift right] &                 
+\end{tikzcd}
+    \end{center}
+    from which we see that $ f'^{\sharp} = f''^{\sharp} $. 
+\end{proof}
+
+\begin{proposition}
+    \cite[Exercise 7.2.B]{vakilTheRisingSea} 
+    Open immersions of locally ringed spaces are monomorphisms. 
+\end{proposition}
+
+\begin{proof}
+    Let $ f:X \to Y $ be an open immersion of locally ringed spaces. 
+    Let $ g,h: Z \to X $ be two morphisms of locally ringed spaces, such that $ f\circ g = f \circ h $. 
+    Then it's easy to verify that $ f $ is equal to $ g $ as continuous maps, since $ f $ is a homeomorphism. 
+    
+    We only need to prove that $ f^{\sharp} $ is equal to $ g^{\sharp} $, as a pullback map on structure sheaves, 
+    from $ \mathscr{O}_{X} $ to $ g_{*}\mathscr{O}_{Z} $. We prove this on the level of stalks. 
+    Since $ f^{-1} $ and $ f_{*} $ preserves stalks (\autoref{lemma: stalks of image}), we have the diagram 
+    \begin{center}
+        \begin{tikzcd}
+                                           & (f_*\mathscr{O}_{X})_{gf(z)} \arrow[d, equal] \arrow[r, "h^{\sharp}_z"', shift right] \arrow[r, "g^{\sharp}_z", shift left] & (g_*f_*\mathscr{O}_Z)_{gf(z)} \arrow[d, equal] \\
+{\mathscr{O}_{Y,gf(z)}} \arrow[r, "\cong"] & {\mathscr{O}_{X,f(z)}} \arrow[r, "g^{\sharp}_z", shift left] \arrow[r, "h^{\sharp}_z"', shift right]                                      & {\mathscr{O}_{Z,z}}                                         
+\end{tikzcd}
+    \end{center}
+    hence $ g_{z}^{\sharp} = h_{z}^{\sharp} $ (indeed, we only need $ f^{-1}\mathscr{O}_{Y} \to \mathscr{O}_{X} $ is surjective here) 
+    for any $ z \in Z $. This proves $ g = h $ as morphisms between locally ringed spaces. 
+\end{proof}
+
 
 
 \subsection{Fibred Products}
+
+\begin{proposition}[Fibre products in schemes]
+    
+\end{proposition}
 
 
 \section{Separatedness \& Properness}
